@@ -1,0 +1,62 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 2rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature {
+  padding: 1.5rem;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.feature h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.feature p {
+  margin-bottom: 0;
+  color: #ccc;
+}
+
+.card {
+  padding: 2em;
+  border: 1px solid #333;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.story-preview {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  text-align: left;
+}
+
+.story-preview h4 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.coming-soon {
+  color: #888;
+  font-style: italic;
+  margin-top: 2rem;
+}
