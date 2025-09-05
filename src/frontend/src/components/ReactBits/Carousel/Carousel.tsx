@@ -1,27 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Carousel.css';
 
 export interface CarouselItem {
   title: string;
   description: string;
   icon?: string;
+  component?: React.ReactNode;
 }
 
 export interface CarouselProps {
   items: CarouselItem[];
   autoRotateInterval?: number;
   className?: string;
+  isFullPage?: boolean;
 }
 
 const Carousel: React.FC<CarouselProps> = ({ 
   items, 
   autoRotateInterval = 4000,
-  className = ''
+  className = '',
+  isFullPage = false
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
-    if (items.length <= 1) return;
+    if (items.length <= 1 || autoRotateInterval === 0) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
@@ -44,19 +49,67 @@ const Carousel: React.FC<CarouselProps> = ({
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
   };
 
+  // Touch/swipe gesture handlers for mobile navigation
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      touchStartRef.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY
+      };
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current || e.changedTouches.length !== 1) return;
+
+    const touchEnd = {
+      x: e.changedTouches[0].clientX,
+      y: e.changedTouches[0].clientY
+    };
+
+    const deltaX = touchEnd.x - touchStartRef.current.x;
+    const deltaY = touchEnd.y - touchStartRef.current.y;
+
+    // Only process horizontal swipes (ignore vertical scrolling)
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+      if (deltaX > 0) {
+        goToPrevious(); // Swipe right = previous
+      } else {
+        goToNext(); // Swipe left = next
+      }
+    }
+
+    touchStartRef.current = null;
+  };
+
   if (!items.length) return null;
 
+  const currentItem = items[currentIndex];
+
   return (
-    <div className={`reactbits-carousel ${className}`}>
+    <div 
+      className={`reactbits-carousel ${isFullPage ? 'fullpage' : ''} ${className}`}
+      ref={carouselRef}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="carousel-background">
         <div className="carousel-content">
-          <div className="carousel-item">
-            {items[currentIndex].icon && (
-              <div className="carousel-icon">{items[currentIndex].icon}</div>
-            )}
-            <h3 className="carousel-title">{items[currentIndex].title}</h3>
-            <p className="carousel-description">{items[currentIndex].description}</p>
-          </div>
+          {currentItem.component ? (
+            // Render the component if it exists (for full-page mode)
+            <div className="carousel-scene">
+              {currentItem.component}
+            </div>
+          ) : (
+            // Render the traditional carousel item
+            <div className="carousel-item">
+              {currentItem.icon && (
+                <div className="carousel-icon">{currentItem.icon}</div>
+              )}
+              <h3 className="carousel-title">{currentItem.title}</h3>
+              <p className="carousel-description">{currentItem.description}</p>
+            </div>
+          )}
         </div>
         
         <div className="carousel-controls">
@@ -77,13 +130,18 @@ const Carousel: React.FC<CarouselProps> = ({
         </div>
 
         <div className="carousel-indicators">
-          {items.map((_, index) => (
+          {items.map((item, index) => (
             <button
               key={index}
               className={`carousel-indicator ${index === currentIndex ? 'active' : ''}`}
               onClick={() => goToSlide(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
+              aria-label={`Go to ${item.title}`}
+              title={item.title}
+            >
+              {isFullPage && item.icon ? (
+                <span className="indicator-icon">{item.icon}</span>
+              ) : null}
+            </button>
           ))}
         </div>
       </div>

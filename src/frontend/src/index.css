@@ -3,9 +3,16 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  
+  /* Night sky gradient background */
+  background: linear-gradient(180deg, 
+    #1a0f2e 0%,     /* Dark purple at top */
+    #2d1b4e 30%,    /* Medium purple */
+    #1e1635 70%,    /* Darker purple */
+    #0f0a1c 100%    /* Very dark purple at bottom */
+  );
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,10 +31,45 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  
+  /* Night sky background with responsive stars */
+  background: 
+    radial-gradient(1px 1px at 10% 15%, white, transparent),
+    radial-gradient(1px 1px at 25% 35%, white, transparent),
+    radial-gradient(1px 1px at 45% 20%, white, transparent),
+    radial-gradient(1px 1px at 65% 40%, white, transparent),
+    radial-gradient(1px 1px at 80% 15%, white, transparent),
+    radial-gradient(1px 1px at 90% 45%, white, transparent),
+    radial-gradient(1px 1px at 15% 60%, white, transparent),
+    radial-gradient(1px 1px at 35% 80%, white, transparent),
+    radial-gradient(1px 1px at 55% 70%, white, transparent),
+    radial-gradient(1px 1px at 75% 85%, white, transparent),
+    radial-gradient(1px 1px at 95% 75%, white, transparent),
+    radial-gradient(1px 1px at 5% 90%, white, transparent),
+    linear-gradient(180deg, 
+      #1a0f2e 0%, 
+      #2d1b4e 30%, 
+      #1e1635 70%, 
+      #0f0a1c 100%
+    );
+  background-repeat: repeat;
+  background-size: 100vw 50vh, 100vw 50vh, 100vw 50vh, 100vw 50vh, 
+                   100vw 50vh, 100vw 50vh, 100vw 50vh, 100vw 50vh,
+                   100vw 50vh, 100vw 50vh, 100vw 50vh, 100vw 50vh,
+                   100% 100%;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.9; }
 }
 
 h1 {
@@ -56,13 +98,20 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: rgba(255, 255, 255, 0.87);
+    /* Keep dark theme for night sky effect */
+    background: linear-gradient(180deg, 
+      #1a0f2e 0%, 
+      #2d1b4e 30%, 
+      #1e1635 70%, 
+      #0f0a1c 100%
+    );
   }
   a:hover {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #1a1a1a;
+    color: rgba(255, 255, 255, 0.87);
   }
 }
