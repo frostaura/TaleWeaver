@@ -1,5 +1,25 @@
 import React, { useState } from 'react';
+import { 
+  Button, 
+  Typography, 
+  Card, 
+  Space, 
+  Row, 
+  Col, 
+  Switch, 
+  Alert,
+  message
+} from 'antd';
+import { 
+  LockOutlined, 
+  UnlockOutlined, 
+  SettingOutlined,
+  ThunderboltOutlined,
+  BgColorsOutlined 
+} from '@ant-design/icons';
 import './ParentalLockScene.css';
+
+const { Title, Paragraph } = Typography;
 
 const ParentalLockScene: React.FC = () => {
   const [isLocked, setIsLocked] = useState(false);
@@ -41,11 +61,11 @@ const ParentalLockScene: React.FC = () => {
 
   const setupParentalLock = () => {
     if (pin.length !== 4) {
-      setError('PIN must be 4 digits');
+      message.error('PIN must be 4 digits');
       return;
     }
     if (pin !== confirmPin) {
-      setError('PINs do not match');
+      message.error('PINs do not match');
       return;
     }
     setIsLocked(true);
@@ -53,6 +73,7 @@ const ParentalLockScene: React.FC = () => {
     setPin('');
     setConfirmPin('');
     setError('');
+    message.success('Parental lock enabled successfully!');
   };
 
   const verifyPin = () => {
@@ -60,8 +81,9 @@ const ParentalLockScene: React.FC = () => {
       setIsLocked(false);
       setEnteredPin('');
       setError('');
+      message.success('Parental lock disabled');
     } else {
-      setError('Incorrect PIN');
+      message.error('Incorrect PIN');
       setEnteredPin('');
     }
   };
@@ -74,172 +96,235 @@ const ParentalLockScene: React.FC = () => {
   };
 
   const renderKeypad = (currentPin: string, isConfirm: boolean = false) => (
-    <div className="keypad">
-      <div className="pin-display">
+    <div style={{ maxWidth: '300px', margin: '0 auto' }}>
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        gap: '8px', 
+        marginBottom: '24px',
+        fontSize: '24px'
+      }}>
         {[0, 1, 2, 3].map(index => (
-          <div
+          <span
             key={index}
-            className={`pin-digit ${index < currentPin.length ? 'filled' : ''}`}
+            style={{ 
+              color: index < currentPin.length ? '#1890ff' : 'rgba(255, 255, 255, 0.3)',
+              fontSize: '32px'
+            }}
           >
             {index < currentPin.length ? '●' : '○'}
-          </div>
+          </span>
         ))}
       </div>
       
-      <div className="keypad-buttons">
+      <Row gutter={[8, 8]}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
-          <button
-            key={num}
-            className="keypad-btn"
-            onClick={() => isConfirm ? handleConfirmPinInput(num.toString()) : handlePinInput(num.toString())}
-            disabled={currentPin.length >= 4}
-          >
-            {num}
-          </button>
+          <Col span={8} key={num}>
+            <Button
+              block
+              size="large"
+              onClick={() => isConfirm ? handleConfirmPinInput(num.toString()) : handlePinInput(num.toString())}
+              disabled={currentPin.length >= 4}
+              style={{ height: '50px', fontSize: '18px' }}
+            >
+              {num}
+            </Button>
+          </Col>
         ))}
-        <button className="keypad-btn keypad-clear" onClick={clearPin}>
-          Clear
-        </button>
-        <button
-          className="keypad-btn"
-          onClick={() => isConfirm ? handleConfirmPinInput('0') : handlePinInput('0')}
-          disabled={currentPin.length >= 4}
-        >
-          0
-        </button>
-        <button className="keypad-btn keypad-delete" onClick={() => {
-          if (isConfirm) {
-            setConfirmPin(confirmPin.slice(0, -1));
-          } else if (showSetup) {
-            setPin(pin.slice(0, -1));
-          } else {
-            setEnteredPin(enteredPin.slice(0, -1));
-          }
-        }}>
-          ⌫
-        </button>
-      </div>
+        <Col span={8}>
+          <Button
+            block
+            size="large"
+            onClick={clearPin}
+            style={{ height: '50px' }}
+          >
+            Clear
+          </Button>
+        </Col>
+        <Col span={8}>
+          <Button
+            block
+            size="large"
+            onClick={() => isConfirm ? handleConfirmPinInput('0') : handlePinInput('0')}
+            disabled={currentPin.length >= 4}
+            style={{ height: '50px', fontSize: '18px' }}
+          >
+            0
+          </Button>
+        </Col>
+        <Col span={8}>
+          <Button
+            block
+            size="large"
+            onClick={() => {
+              if (isConfirm) {
+                setConfirmPin(confirmPin.slice(0, -1));
+              } else if (showSetup) {
+                setPin(pin.slice(0, -1));
+              } else {
+                setEnteredPin(enteredPin.slice(0, -1));
+              }
+            }}
+            style={{ height: '50px', fontSize: '18px' }}
+          >
+            ⌫
+          </Button>
+        </Col>
+      </Row>
     </div>
   );
 
   return (
     <div className="parental-lock-scene">
       <div className="scene-content">
-        <h1 className="scene-title">🔒 Parental Lock</h1>
-        <p className="scene-subtitle">
+        <Title level={1} style={{ textAlign: 'center', color: 'white', marginBottom: '8px' }}>
+          🔒 Parental Lock
+        </Title>
+        <Paragraph style={{ textAlign: 'center', color: 'rgba(255, 255, 255, 0.75)', fontSize: '16px', marginBottom: '32px' }}>
           {isLocked ? 'Enter PIN to access locked modes' : 'Secure your app with parental controls'}
-        </p>
+        </Paragraph>
 
-        {!isLocked && !showSetup && (
-          <div className="lock-setup">
-            <div className="lock-info">
-              <h3>🛡️ Set up Parental Controls</h3>
-              <p>
-                Create a 4-digit PIN to lock specific modes and ensure your child's safety.
-                You can choose which modes to lock after setting up the PIN.
-              </p>
-              <ul className="lock-benefits">
-                <li>🚫 Restrict access to certain story modes</li>
-                <li>⏰ Set time limits for story generation</li>
-                <li>🔍 Monitor story content and themes</li>
-                <li>👨‍👩‍👧‍👦 Parent-only access to settings</li>
-              </ul>
-            </div>
-            
-            <button className="setup-btn" onClick={() => setShowSetup(true)}>
-              🔧 Set Up PIN
-            </button>
-          </div>
-        )}
-
-        {showSetup && (
-          <div className="pin-setup">
-            <div className="setup-step">
-              <h3>Create Your 4-Digit PIN</h3>
-              {renderKeypad(pin)}
-              
-              {pin.length === 4 && (
-                <div className="confirm-pin">
-                  <h3>Confirm Your PIN</h3>
-                  {renderKeypad(confirmPin, true)}
+        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+          {!isLocked && !showSetup && (
+            <Space direction="vertical" size="large" style={{ width: '100%' }}>
+              <Card title={<><SettingOutlined /> Set up Parental Controls</>}>
+                <Paragraph>
+                  Create a 4-digit PIN to lock specific modes and ensure your child's safety.
+                  You can choose which modes to lock after setting up the PIN.
+                </Paragraph>
+                <ul style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
+                  <li>🚫 Restrict access to certain story modes</li>
+                  <li>⏰ Set time limits for story generation</li>
+                  <li>🔍 Monitor story content and themes</li>
+                  <li>👨‍👩‍👧‍👦 Parent-only access to settings</li>
+                </ul>
+                <div style={{ textAlign: 'center', marginTop: '24px' }}>
+                  <Button 
+                    type="primary" 
+                    size="large" 
+                    icon={<LockOutlined />}
+                    onClick={() => setShowSetup(true)}
+                  >
+                    Set Up PIN
+                  </Button>
                 </div>
-              )}
-              
-              {error && <div className="error-message">{error}</div>}
-              
-              <div className="setup-actions">
-                <button className="cancel-btn" onClick={() => {
-                  setShowSetup(false);
-                  clearPin();
-                }}>
-                  Cancel
-                </button>
-                {pin.length === 4 && confirmPin.length === 4 && (
-                  <button className="confirm-btn" onClick={setupParentalLock}>
-                    ✅ Enable Lock
-                  </button>
+              </Card>
+
+              <Card title="📱 Mode Controls">
+                <Space direction="vertical" size="large" style={{ width: '100%' }}>
+                  <Row justify="space-between" align="middle">
+                    <Col>
+                      <Space>
+                        <ThunderboltOutlined style={{ fontSize: '20px' }} />
+                        <span style={{ fontSize: '16px' }}>Quick Play</span>
+                      </Space>
+                    </Col>
+                    <Col>
+                      <Switch
+                        checked={lockedModes.quickPlay}
+                        onChange={() => toggleModeLock('quickPlay')}
+                        checkedChildren="🔒"
+                        unCheckedChildren="🔓"
+                      />
+                    </Col>
+                  </Row>
+                  
+                  <Row justify="space-between" align="middle">
+                    <Col>
+                      <Space>
+                        <BgColorsOutlined style={{ fontSize: '20px' }} />
+                        <span style={{ fontSize: '16px' }}>Custom Story</span>
+                      </Space>
+                    </Col>
+                    <Col>
+                      <Switch
+                        checked={lockedModes.customStory}
+                        onChange={() => toggleModeLock('customStory')}
+                        checkedChildren="🔒"
+                        unCheckedChildren="🔓"
+                      />
+                    </Col>
+                  </Row>
+                </Space>
+                
+                <div style={{ textAlign: 'center', marginTop: '24px' }}>
+                  <Button icon={<SettingOutlined />} onClick={() => setShowSetup(true)}>
+                    Change PIN
+                  </Button>
+                </div>
+              </Card>
+            </Space>
+          )}
+
+          {showSetup && (
+            <Card title="Create Your 4-Digit PIN">
+              <Space direction="vertical" size="large" style={{ width: '100%' }}>
+                {renderKeypad(pin)}
+                
+                {pin.length === 4 && (
+                  <>
+                    <Title level={4} style={{ textAlign: 'center', color: 'white' }}>
+                      Confirm Your PIN
+                    </Title>
+                    {renderKeypad(confirmPin, true)}
+                  </>
                 )}
-              </div>
-            </div>
-          </div>
-        )}
+                
+                {error && <Alert message={error} type="error" showIcon />}
+                
+                <Row justify="space-between" style={{ marginTop: '24px' }}>
+                  <Col>
+                    <Button 
+                      size="large"
+                      onClick={() => {
+                        setShowSetup(false);
+                        clearPin();
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  </Col>
+                  {pin.length === 4 && confirmPin.length === 4 && (
+                    <Col>
+                      <Button 
+                        type="primary" 
+                        size="large" 
+                        icon={<LockOutlined />}
+                        onClick={setupParentalLock}
+                      >
+                        Enable Lock
+                      </Button>
+                    </Col>
+                  )}
+                </Row>
+              </Space>
+            </Card>
+          )}
 
-        {isLocked && (
-          <div className="pin-entry">
-            <div className="locked-status">
-              <div className="lock-icon">🔒</div>
-              <h3>Enter PIN to Continue</h3>
-              {renderKeypad(enteredPin)}
-              
-              {error && <div className="error-message">{error}</div>}
-              
-              {enteredPin.length === 4 && (
-                <button className="verify-btn" onClick={verifyPin}>
-                  🔓 Unlock
-                </button>
-              )}
-            </div>
-          </div>
-        )}
-
-        {!isLocked && !showSetup && (
-          <div className="lock-controls">
-            <h3>📱 Mode Controls</h3>
-            <div className="mode-controls">
-              <div className="mode-control">
-                <div className="mode-info">
-                  <span className="mode-icon">⚡</span>
-                  <span className="mode-name">Quick Play</span>
-                </div>
-                <button
-                  className={`lock-toggle ${lockedModes.quickPlay ? 'locked' : 'unlocked'}`}
-                  onClick={() => toggleModeLock('quickPlay')}
-                >
-                  {lockedModes.quickPlay ? '🔒 Locked' : '🔓 Unlocked'}
-                </button>
-              </div>
-              
-              <div className="mode-control">
-                <div className="mode-info">
-                  <span className="mode-icon">🎨</span>
-                  <span className="mode-name">Custom Story</span>
-                </div>
-                <button
-                  className={`lock-toggle ${lockedModes.customStory ? 'locked' : 'unlocked'}`}
-                  onClick={() => toggleModeLock('customStory')}
-                >
-                  {lockedModes.customStory ? '🔒 Locked' : '🔓 Unlocked'}
-                </button>
-              </div>
-            </div>
-            
-            <div className="lock-actions">
-              <button className="disable-lock-btn" onClick={() => setShowSetup(true)}>
-                🔧 Change PIN
-              </button>
-            </div>
-          </div>
-        )}
+          {isLocked && (
+            <Card 
+              title={<><LockOutlined /> Enter PIN to Continue</>}
+              style={{ textAlign: 'center' }}
+            >
+              <Space direction="vertical" size="large" style={{ width: '100%' }}>
+                {renderKeypad(enteredPin)}
+                
+                {error && <Alert message={error} type="error" showIcon />}
+                
+                {enteredPin.length === 4 && (
+                  <Button 
+                    type="primary" 
+                    size="large" 
+                    icon={<UnlockOutlined />}
+                    onClick={verifyPin}
+                  >
+                    Unlock
+                  </Button>
+                )}
+              </Space>
+            </Card>
+          )}
+        </div>
       </div>
     </div>
   );
