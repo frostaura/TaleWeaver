@@ -1,4 +1,5 @@
 import './App.css';
+import { ConfigProvider, theme } from 'antd';
 import { Carousel } from './components/ReactBits';
 import type { CarouselItem } from './components/ReactBits';
 import { SettingsScene, QuickPlayScene, CustomStoryScene, ParentalLockScene } from './components/Scenes';
@@ -33,13 +34,27 @@ function App() {
   ];
 
   return (
-    <div className="app">
-      <Carousel 
-        items={appScenes} 
-        autoRotateInterval={0} // Disable auto-rotation for scenes
-        isFullPage={true}
-      />
-    </div>
+    <ConfigProvider
+      theme={{
+        algorithm: theme.darkAlgorithm,
+        token: {
+          colorPrimary: '#646cff',
+          colorBgContainer: 'rgba(255, 255, 255, 0.1)',
+          colorBgElevated: 'rgba(255, 255, 255, 0.15)',
+          colorText: 'rgba(255, 255, 255, 0.95)',
+          colorTextSecondary: 'rgba(255, 255, 255, 0.75)',
+          borderRadius: 12,
+        },
+      }}
+    >
+      <div className="app">
+        <Carousel 
+          items={appScenes} 
+          autoRotateInterval={0} // Disable auto-rotation for scenes
+          isFullPage={true}
+        />
+      </div>
+    </ConfigProvider>
   );
 }
 

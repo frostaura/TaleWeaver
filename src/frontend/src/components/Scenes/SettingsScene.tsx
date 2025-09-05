@@ -1,86 +1,133 @@
 import React from 'react';
+import { 
+  Row, 
+  Col, 
+  Card, 
+  Slider, 
+  Select, 
+  Checkbox, 
+  Input, 
+  Button, 
+  Typography, 
+  Space,
+  Divider 
+} from 'antd';
+import { 
+  SoundOutlined, 
+  BgColorsOutlined, 
+  UserOutlined, 
+  SafetyOutlined 
+} from '@ant-design/icons';
 import './SettingsScene.css';
+
+const { Title, Paragraph } = Typography;
 
 const SettingsScene: React.FC = () => {
   return (
     <div className="settings-scene">
       <div className="scene-content">
-        <h1 className="scene-title">⚙️ Settings</h1>
-        <p className="scene-subtitle">Customize your TaleWeaver experience</p>
+        <Title level={1} style={{ textAlign: 'center', color: 'white', marginBottom: '8px' }}>
+          ⚙️ Settings
+        </Title>
+        <Paragraph style={{ textAlign: 'center', color: 'rgba(255, 255, 255, 0.75)', fontSize: '16px', marginBottom: '32px' }}>
+          Customize your TaleWeaver experience
+        </Paragraph>
         
-        <div className="settings-grid">
-          <div className="setting-item">
-            <h3>🔊 Audio Settings</h3>
-            <div className="setting-controls">
-              <label>Volume</label>
-              <input type="range" min="0" max="100" defaultValue="75" />
-            </div>
-            <div className="setting-controls">
-              <label>Voice Type</label>
-              <select defaultValue="friendly">
-                <option value="friendly">Friendly</option>
-                <option value="gentle">Gentle</option>
-                <option value="storyteller">Storyteller</option>
-              </select>
-            </div>
-          </div>
+        <Row gutter={[24, 24]} justify="center">
+          <Col xs={24} md={12}>
+            <Card 
+              title={<><SoundOutlined /> Audio Settings</>}
+              style={{ height: '100%' }}
+            >
+              <Space direction="vertical" style={{ width: '100%' }} size="large">
+                <div>
+                  <Paragraph strong>Volume</Paragraph>
+                  <Slider defaultValue={75} tooltip={{ formatter: (value) => `${value}%` }} />
+                </div>
+                <div>
+                  <Paragraph strong>Voice Type</Paragraph>
+                  <Select 
+                    defaultValue="friendly" 
+                    style={{ width: '100%' }}
+                    options={[
+                      { value: 'friendly', label: 'Friendly' },
+                      { value: 'gentle', label: 'Gentle' },
+                      { value: 'storyteller', label: 'Storyteller' }
+                    ]}
+                  />
+                </div>
+              </Space>
+            </Card>
+          </Col>
           
-          <div className="setting-item">
-            <h3>🎨 Theme Settings</h3>
-            <div className="setting-controls">
-              <label>
-                <input type="checkbox" defaultChecked />
-                Night Sky Theme
-              </label>
-            </div>
-            <div className="setting-controls">
-              <label>
-                <input type="checkbox" defaultChecked />
-                Animated Stars
-              </label>
-            </div>
-          </div>
+          <Col xs={24} md={12}>
+            <Card 
+              title={<><BgColorsOutlined /> Theme Settings</>}
+              style={{ height: '100%' }}
+            >
+              <Space direction="vertical" style={{ width: '100%' }} size="large">
+                <Checkbox defaultChecked>Night Sky Theme</Checkbox>
+                <Checkbox defaultChecked>Animated Stars</Checkbox>
+              </Space>
+            </Card>
+          </Col>
           
-          <div className="setting-item">
-            <h3>👶 Child Profile</h3>
-            <div className="setting-controls">
-              <label>Child's Name</label>
-              <input type="text" placeholder="Enter name" />
-            </div>
-            <div className="setting-controls">
-              <label>Age</label>
-              <select defaultValue="5">
-                <option value="3">3 years</option>
-                <option value="4">4 years</option>
-                <option value="5">5 years</option>
-                <option value="6">6 years</option>
-                <option value="7">7 years</option>
-                <option value="8">8 years</option>
-              </select>
-            </div>
-          </div>
+          <Col xs={24} md={12}>
+            <Card 
+              title={<><UserOutlined /> Child Profile</>}
+              style={{ height: '100%' }}
+            >
+              <Space direction="vertical" style={{ width: '100%' }} size="large">
+                <div>
+                  <Paragraph strong>Child's Name</Paragraph>
+                  <Input placeholder="Enter name" />
+                </div>
+                <div>
+                  <Paragraph strong>Age</Paragraph>
+                  <Select 
+                    defaultValue="5" 
+                    style={{ width: '100%' }}
+                    options={[
+                      { value: '3', label: '3 years' },
+                      { value: '4', label: '4 years' },
+                      { value: '5', label: '5 years' },
+                      { value: '6', label: '6 years' },
+                      { value: '7', label: '7 years' },
+                      { value: '8', label: '8 years' }
+                    ]}
+                  />
+                </div>
+              </Space>
+            </Card>
+          </Col>
           
-          <div className="setting-item">
-            <h3>🛡️ Safety Settings</h3>
-            <div className="setting-controls">
-              <label>
-                <input type="checkbox" defaultChecked />
-                Content Filtering
-              </label>
-            </div>
-            <div className="setting-controls">
-              <label>
-                <input type="checkbox" />
-                Parental Controls
-              </label>
-            </div>
-          </div>
-        </div>
+          <Col xs={24} md={12}>
+            <Card 
+              title={<><SafetyOutlined /> Safety Settings</>}
+              style={{ height: '100%' }}
+            >
+              <Space direction="vertical" style={{ width: '100%' }} size="large">
+                <Checkbox defaultChecked>Content Filtering</Checkbox>
+                <Checkbox>Parental Controls</Checkbox>
+              </Space>
+            </Card>
+          </Col>
+        </Row>
         
-        <div className="settings-actions">
-          <button className="save-button">Save Settings</button>
-          <button className="reset-button">Reset to Default</button>
-        </div>
+        <Divider />
+        
+        <Row justify="center" gutter={16}>
+          <Col>
+            <Button type="primary" size="large">
+              Save Settings
+            </Button>
+          </Col>
+          <Col>
+            <Button size="large">
+              Reset to Default
+            </Button>
+          </Col>
+        </Row>
       </div>
     </div>
   );
