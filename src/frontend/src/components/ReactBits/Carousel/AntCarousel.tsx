@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Carousel as AntCarousel, Button, Space } from 'antd';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { Carousel as AntCarousel, Button } from 'antd';
 import type { CarouselRef } from 'antd/es/carousel';
 
 export interface CarouselItem {
@@ -26,13 +25,7 @@ const CustomCarousel: React.FC<CarouselProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = React.useRef<CarouselRef>(null);
 
-  const goToPrevious = () => {
-    carouselRef.current?.prev();
-  };
 
-  const goToNext = () => {
-    carouselRef.current?.next();
-  };
 
   const goToSlide = (index: number) => {
     carouselRef.current?.goTo(index);
@@ -54,6 +47,10 @@ const CustomCarousel: React.FC<CarouselProps> = ({
     autoplaySpeed: autoRotateInterval,
     afterChange: handleAfterChange,
     effect: 'fade' as const,
+    swipe: true,
+    swipeToSlide: true,
+    touchMove: true,
+    adaptiveHeight: true,
   };
 
   return (
@@ -104,7 +101,8 @@ const CustomCarousel: React.FC<CarouselProps> = ({
                   alignItems: 'center',
                   justifyContent: 'center',
                   padding: isFullPage ? '2rem' : '1rem',
-                  position: 'relative'
+                  position: 'relative',
+                  minHeight: '300px',
                 }}
               >
                 {item.component ? (
@@ -151,80 +149,8 @@ const CustomCarousel: React.FC<CarouselProps> = ({
           ))}
         </AntCarousel>
 
-        {/* Custom Navigation Controls */}
-        <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: 0,
-          right: 0,
-          transform: 'translateY(-50%)',
-          display: 'flex',
-          justifyContent: 'space-between',
-          padding: '0 1rem',
-          pointerEvents: 'none',
-          zIndex: 3
-        }}>
-          <Button 
-            type="text"
-            icon={<LeftOutlined />}
-            onClick={goToPrevious}
-            style={{
-              background: 'rgba(255, 255, 255, 0.2)',
-              border: 'none',
-              color: 'white',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-              backdropFilter: 'blur(10px)',
-              pointerEvents: 'all',
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)';
-              e.currentTarget.style.transform = 'scale(1.1)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
-              e.currentTarget.style.transform = 'scale(1)';
-            }}
-          />
-          <Button 
-            type="text"
-            icon={<RightOutlined />}
-            onClick={goToNext}
-            style={{
-              background: 'rgba(255, 255, 255, 0.2)',
-              border: 'none',
-              color: 'white',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-              backdropFilter: 'blur(10px)',
-              pointerEvents: 'all',
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)';
-              e.currentTarget.style.transform = 'scale(1.1)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
-              e.currentTarget.style.transform = 'scale(1)';
-            }}
-          />
-        </div>
 
-        {/* Custom Indicators */}
+        {/* Custom Indicators - Mobile First Legend */}
         <div style={{
           position: 'absolute',
           bottom: isFullPage ? '2rem' : '1rem',
@@ -232,7 +158,12 @@ const CustomCarousel: React.FC<CarouselProps> = ({
           transform: 'translateX(-50%)',
           display: 'flex',
           gap: isFullPage ? '1rem' : '0.5rem',
-          zIndex: 3
+          zIndex: 3,
+          // Mobile-first responsive adjustments
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          padding: '0 1rem',
+          maxWidth: '90%',
         }}>
           {items.map((item, index) => (
             <Button
@@ -261,7 +192,11 @@ const CustomCarousel: React.FC<CarouselProps> = ({
                   : 'none',
                 transition: 'all 0.3s ease',
                 padding: 0,
-                minWidth: 'auto'
+                // Mobile-first touch target improvements
+                minHeight: isFullPage ? '50px' : '44px',
+                minWidth: isFullPage ? '50px' : '44px',
+                // Better mobile touch response
+                touchAction: 'manipulation',
               }}
               onMouseEnter={(e) => {
                 if (isFullPage) {
@@ -319,6 +254,42 @@ const CustomCarousel: React.FC<CarouselProps> = ({
           
           .ant-carousel .slick-slide h3 {
             color: #fff;
+          }
+          
+          /* Mobile-first responsive improvements */
+          @media (max-width: 768px) {
+            .ant-carousel-wrapper {
+              touch-action: pan-x;
+            }
+            
+            .ant-carousel .slick-slide {
+              padding: 0.5rem;
+            }
+            
+            .ant-carousel .slick-track {
+              /* Enable hardware acceleration for smoother swipes */
+              transform: translate3d(0, 0, 0);
+            }
+            
+            /* Better touch targets for mobile */
+            .ant-carousel-wrapper button {
+              min-width: 44px !important;
+              min-height: 44px !important;
+            }
+          }
+          
+          /* Ensure smooth swipe on touch devices */
+          .ant-carousel .slick-list {
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+          }
+          
+          /* Disable text selection during swipe */
+          .ant-carousel .slick-slide {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
           }
         `}
       </style>
