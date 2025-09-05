@@ -159,6 +159,11 @@
 @media (max-width: 768px) {
   .settings-scene {
     padding: 1rem;
+    /* Safe area support for mobile devices */
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
   
   .scene-title {
@@ -179,5 +184,26 @@
   .reset-button {
     width: 100%;
     max-width: 300px;
+    /* Larger touch targets for mobile */
+    min-height: 48px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 320px) {
+  .settings-scene {
+    padding: 0.5rem;
+  }
+  
+  .scene-title {
+    font-size: 2rem;
+  }
+  
+  .scene-subtitle {
+    font-size: 1rem;
+  }
+  
+  .setting-item {
+    padding: 1rem;
   }
 }

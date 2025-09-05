@@ -38,24 +38,20 @@ body {
   overflow-x: hidden;
   position: relative;
   
-  /* Night sky background with stars */
+  /* Night sky background with responsive stars */
   background: 
-    radial-gradient(2px 2px at 20px 30px, white, transparent),
-    radial-gradient(2px 2px at 40px 70px, white, transparent),
-    radial-gradient(1px 1px at 90px 40px, white, transparent),
-    radial-gradient(1px 1px at 130px 80px, white, transparent),
-    radial-gradient(2px 2px at 160px 30px, white, transparent),
-    radial-gradient(1px 1px at 200px 90px, white, transparent),
-    radial-gradient(2px 2px at 240px 50px, white, transparent),
-    radial-gradient(1px 1px at 280px 20px, white, transparent),
-    radial-gradient(1px 1px at 320px 70px, white, transparent),
-    radial-gradient(2px 2px at 360px 40px, white, transparent),
-    radial-gradient(1px 1px at 400px 80px, white, transparent),
-    radial-gradient(2px 2px at 440px 30px, white, transparent),
-    radial-gradient(1px 1px at 480px 60px, white, transparent),
-    radial-gradient(1px 1px at 520px 90px, white, transparent),
-    radial-gradient(2px 2px at 560px 20px, white, transparent),
-    radial-gradient(1px 1px at 600px 50px, white, transparent),
+    radial-gradient(1px 1px at 10% 15%, white, transparent),
+    radial-gradient(1px 1px at 25% 35%, white, transparent),
+    radial-gradient(1px 1px at 45% 20%, white, transparent),
+    radial-gradient(1px 1px at 65% 40%, white, transparent),
+    radial-gradient(1px 1px at 80% 15%, white, transparent),
+    radial-gradient(1px 1px at 90% 45%, white, transparent),
+    radial-gradient(1px 1px at 15% 60%, white, transparent),
+    radial-gradient(1px 1px at 35% 80%, white, transparent),
+    radial-gradient(1px 1px at 55% 70%, white, transparent),
+    radial-gradient(1px 1px at 75% 85%, white, transparent),
+    radial-gradient(1px 1px at 95% 75%, white, transparent),
+    radial-gradient(1px 1px at 5% 90%, white, transparent),
     linear-gradient(180deg, 
       #1a0f2e 0%, 
       #2d1b4e 30%, 
@@ -63,10 +59,9 @@ body {
       #0f0a1c 100%
     );
   background-repeat: repeat;
-  background-size: 640px 100px, 640px 100px, 640px 100px, 640px 100px, 
-                   640px 100px, 640px 100px, 640px 100px, 640px 100px,
-                   640px 100px, 640px 100px, 640px 100px, 640px 100px,
-                   640px 100px, 640px 100px, 640px 100px, 640px 100px,
+  background-size: 100vw 50vh, 100vw 50vh, 100vw 50vh, 100vw 50vh, 
+                   100vw 50vh, 100vw 50vh, 100vw 50vh, 100vw 50vh,
+                   100vw 50vh, 100vw 50vh, 100vw 50vh, 100vw 50vh,
                    100% 100%;
   animation: twinkle 3s ease-in-out infinite alternate;
 }

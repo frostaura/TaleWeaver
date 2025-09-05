@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Carousel.css';
 
 export interface CarouselItem {
@@ -22,6 +22,8 @@ const Carousel: React.FC<CarouselProps> = ({
   isFullPage = false
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     if (items.length <= 1 || autoRotateInterval === 0) return;
@@ -47,12 +49,50 @@ const Carousel: React.FC<CarouselProps> = ({
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
   };
 
+  // Touch/swipe gesture handlers for mobile navigation
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      touchStartRef.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY
+      };
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current || e.changedTouches.length !== 1) return;
+
+    const touchEnd = {
+      x: e.changedTouches[0].clientX,
+      y: e.changedTouches[0].clientY
+    };
+
+    const deltaX = touchEnd.x - touchStartRef.current.x;
+    const deltaY = touchEnd.y - touchStartRef.current.y;
+
+    // Only process horizontal swipes (ignore vertical scrolling)
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+      if (deltaX > 0) {
+        goToPrevious(); // Swipe right = previous
+      } else {
+        goToNext(); // Swipe left = next
+      }
+    }
+
+    touchStartRef.current = null;
+  };
+
   if (!items.length) return null;
 
   const currentItem = items[currentIndex];
 
   return (
-    <div className={`reactbits-carousel ${isFullPage ? 'fullpage' : ''} ${className}`}>
+    <div 
+      className={`reactbits-carousel ${isFullPage ? 'fullpage' : ''} ${className}`}
+      ref={carouselRef}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="carousel-background">
         <div className="carousel-content">
           {currentItem.component ? (

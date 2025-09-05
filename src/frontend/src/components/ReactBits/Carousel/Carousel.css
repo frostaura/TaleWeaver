@@ -270,6 +270,11 @@
   
   .reactbits-carousel.fullpage {
     margin: 0;
+    /* Add safe area support for mobile devices */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
   }
   
   .carousel-background {
@@ -278,7 +283,9 @@
   }
   
   .reactbits-carousel.fullpage .carousel-background {
-    padding: 0;
+    padding: 1rem;
+    /* Ensure content doesn't get hidden behind notches/safe areas */
+    min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
   }
   
   .carousel-title {
@@ -294,24 +301,59 @@
   }
   
   .carousel-nav {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     font-size: 1.5rem;
+    /* Larger touch targets for better mobile accessibility */
   }
   
   /* Full-page mobile indicators */
   .reactbits-carousel.fullpage .carousel-indicators {
-    bottom: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom));
     gap: 0.5rem;
+  }
+  
+  .reactbits-carousel.fullpage .carousel-indicator {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    /* Larger touch targets for mobile */
+  }
+  
+  .indicator-icon {
+    font-size: 1.2rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 320px) {
+  .reactbits-carousel.fullpage .carousel-background {
+    padding: 0.5rem;
+  }
+  
+  .carousel-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
   }
   
   .reactbits-carousel.fullpage .carousel-indicator {
     width: 40px;
     height: 40px;
-    border-radius: 8px;
   }
   
   .indicator-icon {
-    font-size: 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .reactbits-carousel.fullpage .carousel-background {
+    padding: 0.5rem 1rem;
+  }
+  
+  .reactbits-carousel.fullpage .carousel-indicators {
+    bottom: 0.5rem;
   }
 }

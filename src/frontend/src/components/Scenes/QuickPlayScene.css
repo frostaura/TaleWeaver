@@ -250,6 +250,11 @@
 @media (max-width: 768px) {
   .quickplay-scene {
     padding: 1rem;
+    /* Safe area support for mobile devices */
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
   
   .scene-title {
@@ -258,12 +263,22 @@
   
   .theme-buttons {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .theme-btn {
+    /* Larger touch targets for mobile */
+    min-height: 48px;
+    padding: 1.25rem;
+    font-size: 1.1rem;
   }
   
   .generate-btn {
     min-width: 200px;
     padding: 1.2rem 2rem;
     font-size: 1.1rem;
+    /* Larger touch target */
+    min-height: 56px;
   }
   
   .story-controls {
@@ -280,5 +295,39 @@
   .save-story-btn {
     width: 100%;
     max-width: 300px;
+    min-height: 48px;
+  }
+  
+  .play-btn,
+  .pause-btn,
+  .restart-btn {
+    /* Better touch targets */
+    min-height: 44px;
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 320px) {
+  .quickplay-scene {
+    padding: 0.5rem;
+  }
+  
+  .scene-title {
+    font-size: 2rem;
+  }
+  
+  .quick-play-options {
+    gap: 2rem;
+  }
+  
+  .theme-btn {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  
+  .generate-btn {
+    min-width: 180px;
+    font-size: 1rem;
   }
 }
