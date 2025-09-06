@@ -19,8 +19,7 @@ import {
   BgColorsOutlined, 
   UserOutlined, 
   SafetyOutlined,
-  CheckOutlined,
-  LockOutlined
+  CheckOutlined
 } from '@ant-design/icons';
 import { getDefaultParentalSettings, saveParentalSettings, type ParentalSettings } from '../../services/api';
 import './SettingsScene.css';
