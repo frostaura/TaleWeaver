@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-06T13:50:49",
+  "timestamp": "2025-09-06T14:26:37",
   "compiler": {
     "name": "@stencil/core",
     "version": "4.36.3",
@@ -152,8 +152,14 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-customstory": [
+          "twui-text"
+        ]
+      }
     },
     {
       "filePath": "src/components/organisms/header/header.tsx",
@@ -220,8 +226,14 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-onboarding": [
+          "twui-text"
+        ]
+      }
     },
     {
       "filePath": "src/components/app/pagecontainer/pagecontainer.tsx",
@@ -264,8 +276,14 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-parentallock": [
+          "twui-text"
+        ]
+      }
     },
     {
       "filePath": "src/components/pages/privacy/privacy.tsx",
@@ -283,8 +301,14 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-privacy": [
+          "twui-text"
+        ]
+      }
     },
     {
       "filePath": "src/components/pages/profile/profile.tsx",
@@ -302,8 +326,14 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-profile": [
+          "twui-text"
+        ]
+      }
     },
     {
       "filePath": "src/components/pages/quickstory/quickstory.tsx",
@@ -321,8 +351,14 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-quickstory": [
+          "twui-text"
+        ]
+      }
     },
     {
       "filePath": "src/components/pages/settings/settings.tsx",
@@ -399,15 +435,43 @@
       "slots": [],
       "parts": [],
       "dependents": [
+        "twui-customstory",
         "twui-header",
-        "twui-settings"
+        "twui-onboarding",
+        "twui-parentallock",
+        "twui-privacy",
+        "twui-profile",
+        "twui-quickstory",
+        "twui-settings",
+        "twui-upgrade"
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "twui-customstory": [
+          "twui-text"
+        ],
         "twui-header": [
           "twui-text"
         ],
+        "twui-onboarding": [
+          "twui-text"
+        ],
+        "twui-parentallock": [
+          "twui-text"
+        ],
+        "twui-privacy": [
+          "twui-text"
+        ],
+        "twui-profile": [
+          "twui-text"
+        ],
+        "twui-quickstory": [
+          "twui-text"
+        ],
         "twui-settings": [
+          "twui-text"
+        ],
+        "twui-upgrade": [
           "twui-text"
         ]
       }
@@ -428,8 +492,14 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-upgrade": [
+          "twui-text"
+        ]
+      }
     }
   ],
   "typeLibrary": {}
