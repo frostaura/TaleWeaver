@@ -37,39 +37,92 @@ body {
   height: 100vh;
   overflow-x: hidden;
   position: relative;
-  
-  /* Night sky background with responsive stars */
-  background: 
-    radial-gradient(1px 1px at 10% 15%, white, transparent),
-    radial-gradient(1px 1px at 25% 35%, white, transparent),
-    radial-gradient(1px 1px at 45% 20%, white, transparent),
-    radial-gradient(1px 1px at 65% 40%, white, transparent),
-    radial-gradient(1px 1px at 80% 15%, white, transparent),
-    radial-gradient(1px 1px at 90% 45%, white, transparent),
-    radial-gradient(1px 1px at 15% 60%, white, transparent),
-    radial-gradient(1px 1px at 35% 80%, white, transparent),
-    radial-gradient(1px 1px at 55% 70%, white, transparent),
-    radial-gradient(1px 1px at 75% 85%, white, transparent),
-    radial-gradient(1px 1px at 95% 75%, white, transparent),
-    radial-gradient(1px 1px at 5% 90%, white, transparent),
-    linear-gradient(180deg, 
-      #1a0f2e 0%, 
-      #2d1b4e 30%, 
-      #1e1635 70%, 
-      #0f0a1c 100%
-    );
-  background-repeat: repeat;
-  background-size: 100vw 50vh, 100vw 50vh, 100vw 50vh, 100vw 50vh, 
-                   100vw 50vh, 100vw 50vh, 100vw 50vh, 100vw 50vh,
-                   100vw 50vh, 100vw 50vh, 100vw 50vh, 100vw 50vh,
-                   100% 100%;
-  animation: twinkle 3s ease-in-out infinite alternate;
 }
 
-@keyframes twinkle {
-  0% { opacity: 0.8; }
-  50% { opacity: 1; }
-  100% { opacity: 0.9; }
+/* Create animated star layers with different animation speeds */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  z-index: -2;
+  background: 
+    radial-gradient(2px 2px at 10% 15%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 25% 35%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 45% 20%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 65% 40%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 80% 15%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 90% 45%, rgba(255, 255, 255, 0.5), transparent);
+  background-size: 100vw 100vh;
+  animation: 
+    starDrift 120s linear infinite,
+    starTwinkle 4s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  z-index: -1;
+  background: 
+    radial-gradient(1px 1px at 15% 60%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 35% 80%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 55% 70%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(2px 2px at 75% 85%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 95% 75%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 5% 90%, rgba(255, 255, 255, 0.6), transparent);
+  background-size: 100vw 100vh;
+  animation: 
+    starDrift 180s linear infinite reverse,
+    starTwinkle 3s ease-in-out infinite alternate;
+}
+
+body {
+  /* Night sky gradient background */
+  background: linear-gradient(180deg, 
+    #1a0f2e 0%, 
+    #2d1b4e 30%, 
+    #1e1635 70%, 
+    #0f0a1c 100%
+  );
+}
+
+/* Slow positional drift animation */
+@keyframes starDrift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-2%, -1%) rotate(90deg); }
+  50% { transform: translate(-1%, -2%) rotate(180deg); }
+  75% { transform: translate(1%, -1%) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+/* Enhanced twinkling animation */
+@keyframes starTwinkle {
+  0% { 
+    opacity: 0.3;
+    filter: brightness(0.8) blur(0px);
+  }
+  25% { 
+    opacity: 0.8;
+    filter: brightness(1.2) blur(0.5px);
+  }
+  50% { 
+    opacity: 1;
+    filter: brightness(1.5) blur(0px);
+  }
+  75% { 
+    opacity: 0.6;
+    filter: brightness(1.1) blur(0.3px);
+  }
+  100% { 
+    opacity: 0.4;
+    filter: brightness(0.9) blur(0px);
+  }
 }
 
 h1 {
