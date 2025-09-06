@@ -12,7 +12,7 @@ public class StoryResponse
 
 public class TtsParameters
 {
-    public string VoiceName { get; set; } = "en_speaker_6"; // Default for parler-tts-mini
+    public string VoiceName { get; set; } = "default"; // parler-tts-mini uses descriptions rather than specific voice names
     public float Speed { get; set; } = 1.0f;
     public string Description { get; set; } = "A warm, friendly voice perfect for bedtime stories";
 }
