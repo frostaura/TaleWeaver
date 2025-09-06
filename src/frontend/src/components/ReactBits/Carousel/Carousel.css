@@ -198,14 +198,26 @@
   z-index: 10;
 }
 
+/* Sticky dock positioning for carousel legend */
+.sticky-dock {
+  position: sticky;
+  bottom: 0;
+}
+
 /* Override any Ant Design carousel dots that might interfere */
 .slick-dots.slick-dots-bottom {
   bottom: max(2rem, env(safe-area-inset-bottom) + 1rem) !important;
-  z-index: 10 !important;
+  z-index: 1000 !important;
   position: fixed !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   width: auto !important;
+  display: flex !important;
+  gap: 1rem !important;
+  padding: 1rem !important;
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-radius: 24px !important;
+  backdrop-filter: blur(10px) !important;
 }
 
 /* Ensure the carousel container doesn't extend beyond viewport */
@@ -230,8 +242,31 @@
   width: 50px !important;
   height: 50px !important;
   border-radius: 12px !important;
-  background: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 2px solid rgba(255, 255, 255, 0.4) !important;
+  font-size: 1.2rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  opacity: 1 !important;
+  text-indent: 0 !important;
+  font-family: inherit !important;
+}
+
+.slick-dots li button:hover,
+.slick-dots li button:focus {
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  transform: scale(1.1) !important;
+}
+
+.slick-dots li.slick-active button {
+  background: rgba(100, 108, 255, 0.4) !important;
+  border-color: #646cff !important;
+  color: white !important;
+  box-shadow: 0 0 20px rgba(100, 108, 255, 0.3) !important;
 }
 
 .carousel-indicator {
@@ -355,23 +390,45 @@
 
   /* Override Ant Design carousel dots on mobile */
   .slick-dots.slick-dots-bottom {
-    bottom: max(2rem, env(safe-area-inset-bottom) + 1rem) !important;
-    padding-bottom: max(0.5rem, env(safe-area-inset-bottom)) !important;
+    bottom: max(1.5rem, env(safe-area-inset-bottom) + 1rem) !important;
+    padding: 0.75rem 1rem !important;
+    gap: 0.75rem !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-radius: 20px !important;
     position: fixed !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     width: auto !important;
+    z-index: 1000 !important;
   }
   
   .slick-dots li {
-    margin: 0 0.25rem !important;
+    margin: 0 !important;
   }
   
   .slick-dots li button {
     width: 44px !important;
     height: 44px !important;
     border-radius: 8px !important;
-    font-size: 1.2rem !important;
+    font-size: 1.1rem !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    border: 2px solid rgba(255, 255, 255, 0.4) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    /* Larger touch targets for mobile */
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+
+  .slick-dots li button:hover,
+  .slick-dots li button:focus {
+    background: rgba(255, 255, 255, 0.35) !important;
+    transform: scale(1.05) !important;
+  }
+
+  .slick-dots li.slick-active button {
+    background: rgba(100, 108, 255, 0.5) !important;
+    border-color: #646cff !important;
+    box-shadow: 0 0 15px rgba(100, 108, 255, 0.4) !important;
   }
   
   .reactbits-carousel.fullpage .carousel-indicator {
