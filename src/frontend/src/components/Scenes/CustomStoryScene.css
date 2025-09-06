@@ -253,10 +253,39 @@
 @media (max-width: 768px) {
   .custom-story-scene {
     padding: 1rem;
+    /* Safe area support for mobile devices */
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    /* Ensure content doesn't overflow horizontally */
+    overflow-x: hidden;
+  }
+
+  .scene-content {
+    /* Add additional padding to prevent content from touching edges */
+    padding: 0 0.5rem;
+    max-width: calc(100vw - 2rem);
   }
   
   .scene-title {
     font-size: 2.5rem;
+  }
+  
+  /* Improve card spacing on mobile */
+  .ant-row {
+    margin-left: -8px !important;
+    margin-right: -8px !important;
+  }
+  
+  .ant-col {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  
+  /* Add extra margin between cards on mobile */
+  .ant-card {
+    margin-bottom: 12px;
   }
   
   .custom-form {

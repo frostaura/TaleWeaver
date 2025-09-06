@@ -59,8 +59,8 @@ const QuickPlayScene: React.FC = () => {
         
         {!storyGenerated ? (
           <Space direction="vertical" size="large" style={{ width: '100%' }}>
-            <Card title="Choose a Quick Theme:" style={{ maxWidth: '800px', margin: '0 auto' }}>
-              <Row gutter={[16, 16]}>
+            <Card title="Choose a Quick Theme:" style={{ maxWidth: '800px', margin: '0 auto', marginBottom: '16px' }}>
+              <Row gutter={[12, 12]}>
                 {themeOptions.map((theme, index) => (
                   <Col xs={12} md={8} key={index}>
                     <Button 
