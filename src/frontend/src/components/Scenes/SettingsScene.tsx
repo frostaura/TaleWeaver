@@ -33,8 +33,8 @@ const SettingsScene: React.FC = () => {
           Customize your TaleWeaver experience
         </Paragraph>
         
-        <Row gutter={[24, 24]} justify="center">
-          <Col xs={24} md={12}>
+        <Row gutter={[16, 16]} justify="center" style={{ margin: '0 -8px' }}>
+          <Col xs={24} md={12} style={{ marginBottom: '16px' }}>
             <Card 
               title={<><SoundOutlined /> Audio Settings</>}
               style={{ height: '100%' }}
@@ -60,7 +60,7 @@ const SettingsScene: React.FC = () => {
             </Card>
           </Col>
           
-          <Col xs={24} md={12}>
+          <Col xs={24} md={12} style={{ marginBottom: '16px' }}>
             <Card 
               title={<><BgColorsOutlined /> Theme Settings</>}
               style={{ height: '100%' }}
@@ -72,7 +72,7 @@ const SettingsScene: React.FC = () => {
             </Card>
           </Col>
           
-          <Col xs={24} md={12}>
+          <Col xs={24} md={12} style={{ marginBottom: '16px' }}>
             <Card 
               title={<><UserOutlined /> Child Profile</>}
               style={{ height: '100%' }}
@@ -101,7 +101,7 @@ const SettingsScene: React.FC = () => {
             </Card>
           </Col>
           
-          <Col xs={24} md={12}>
+          <Col xs={24} md={12} style={{ marginBottom: '16px' }}>
             <Card 
               title={<><SafetyOutlined /> Safety Settings</>}
               style={{ height: '100%' }}
