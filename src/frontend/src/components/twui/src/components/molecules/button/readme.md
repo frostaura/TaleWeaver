@@ -21,12 +21,14 @@
 ### Used by
 
  - [twui-onboarding](../../pages/onboarding)
+ - [twui-parentallock](../../pages/parentallock)
  - [twui-privacy](../../pages/privacy)
 
 ### Graph
 ```mermaid
 graph TD;
   twui-onboarding --> twui-button
+  twui-parentallock --> twui-button
   twui-privacy --> twui-button
   style twui-button fill:#f9f,stroke:#333,stroke-width:4px
 ```

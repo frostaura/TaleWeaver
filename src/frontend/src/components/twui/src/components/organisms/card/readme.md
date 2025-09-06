@@ -17,6 +17,7 @@
 
 ### Used by
 
+ - [twui-parentallock](../../pages/parentallock)
  - [twui-privacy](../../pages/privacy)
 
 ### Depends on
@@ -27,6 +28,7 @@
 ```mermaid
 graph TD;
   twui-card --> twui-text
+  twui-parentallock --> twui-card
   twui-privacy --> twui-card
   style twui-card fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -43,7 +43,7 @@ export class TWUIPrivacy {
           </ul>
         </twui-card>
 
-        <twui-card label="Parental Control" icon="fluent-mdl2:family">
+        <twui-card label="Parental Control" icon="ri:parent-line">
           <twui-text format="subheading">You are in complete control</twui-text>
           <ul>
             <li>Only parents can make purchases or manage settings</li>

@@ -9,8 +9,10 @@ export class TWUIProfile {
   render() {
     return (
       <Host class="page">
-        <twui-text format="header">{state.dictionary.strings.pages.profile.title}</twui-text>
-        <twui-text format="secondary">{state.dictionary.strings.pages.profile.subtitle}</twui-text>
+        <section>
+          <twui-text format="header">{state.dictionary.strings.pages.profile.title}</twui-text>
+          <twui-text format="secondary">{state.dictionary.strings.pages.profile.subtitle}</twui-text>
+        </section>
       </Host>
     );
   }

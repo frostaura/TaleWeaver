@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-06T22:30:30",
+  "timestamp": "2025-09-06T22:38:58",
   "compiler": {
     "name": "@stencil/core",
     "version": "4.36.3",
@@ -180,11 +180,15 @@
       "parts": [],
       "dependents": [
         "twui-onboarding",
+        "twui-parentallock",
         "twui-privacy"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "twui-onboarding": [
+          "twui-button"
+        ],
+        "twui-parentallock": [
           "twui-button"
         ],
         "twui-privacy": [
@@ -255,6 +259,7 @@
       "slots": [],
       "parts": [],
       "dependents": [
+        "twui-parentallock",
         "twui-privacy"
       ],
       "dependencies": [
@@ -263,6 +268,9 @@
       "dependencyGraph": {
         "twui-card": [
           "twui-text"
+        ],
+        "twui-parentallock": [
+          "twui-card"
         ],
         "twui-privacy": [
           "twui-card"
@@ -544,10 +552,17 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "twui-text"
+        "twui-text",
+        "twui-card",
+        "twui-button"
       ],
       "dependencyGraph": {
         "twui-parentallock": [
+          "twui-text",
+          "twui-card",
+          "twui-button"
+        ],
+        "twui-card": [
           "twui-text"
         ]
       }

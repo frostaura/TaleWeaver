@@ -58,7 +58,7 @@ export const dictionaries: Dictionaries = {
         },
         parentallock: {
           title: 'Parental Lock',
-          subtitle: 'Keep your kids safe',
+          subtitle: 'Secure your app with parental controls',
         },
         privacy: {
           title: 'Privacy',

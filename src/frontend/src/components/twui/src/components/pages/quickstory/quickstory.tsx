@@ -9,8 +9,10 @@ export class TWUIQuickstory {
   render() {
     return (
       <Host class="page">
-        <twui-text format="header">{state.dictionary.strings.pages.quickstory.title}</twui-text>
-        <twui-text format="secondary">{state.dictionary.strings.pages.quickstory.subtitle}</twui-text>
+        <section>
+          <twui-text format="header">{state.dictionary.strings.pages.quickstory.title}</twui-text>
+          <twui-text format="secondary">{state.dictionary.strings.pages.quickstory.subtitle}</twui-text>
+        </section>
       </Host>
     );
   }

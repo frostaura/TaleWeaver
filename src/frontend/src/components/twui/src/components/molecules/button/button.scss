@@ -7,7 +7,7 @@ twui-button {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: var(--spacing);
+    gap: var(--spacing-half);
     border: var(--button-border);
     padding: var(--spacing) var(--spacing-double);
     border-radius: var(--border-radius-button);
