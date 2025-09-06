@@ -48,22 +48,36 @@ const CustomCarousel: React.FC<CarouselProps> = ({
         width: isFullPage ? '100vw' : '100%',
         height: isFullPage ? '100vh' : 'auto',
         zIndex: isFullPage ? 1 : 'auto',
+        // Enable scrolling on mobile when content overflows
+        ...(isFullPage && window.innerWidth <= 768 ? {
+          position: 'absolute',
+          height: 'auto',
+          minHeight: '100vh',
+          overflowY: 'auto'
+        } : {})
       }}
     >
       <AntCarousel 
         {...carouselSettings}
-        style={{ height: '100%' }}
+        style={{ 
+          height: '100%',
+          // Allow carousel content to expand on mobile
+          ...(isFullPage && window.innerWidth <= 768 ? {
+            height: 'auto',
+            minHeight: '100vh'
+          } : {})
+        }}
       >
         {items.map((item, index) => (
           <div key={index}>
             <div 
               style={{
-                height: isFullPage ? '100vh' : '400px',
+                height: isFullPage ? (window.innerWidth <= 768 ? 'auto' : '100vh') : '400px',
                 display: 'flex',
-                alignItems: 'center',
+                alignItems: isFullPage && window.innerWidth <= 768 ? 'flex-start' : 'center',
                 justifyContent: 'center',
                 padding: isFullPage ? '2rem' : '1rem',
-                minHeight: '300px',
+                minHeight: isFullPage ? '100vh' : '300px',
               }}
             >
               {item.component ? (

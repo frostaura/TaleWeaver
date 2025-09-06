@@ -9,6 +9,16 @@
   padding-right: env(safe-area-inset-right);
 }
 
+/* Allow content scrolling on mobile when content overflows */
+@media (max-width: 768px) {
+  #root {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+}
+
 .app {
   width: 100%;
   height: 100%;
