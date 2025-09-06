@@ -1,0 +1,423 @@
+{
+  "timestamp": "2025-09-06T12:53:16",
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "4.36.3",
+    "typescriptVersion": "5.5.4"
+  },
+  "components": [
+    {
+      "filePath": "src/components/app/app.tsx",
+      "encapsulation": "none",
+      "tag": "twui-app",
+      "readme": "# twui-app\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "twui-header",
+        "twui-pagecontainer",
+        "twui-settings"
+      ],
+      "dependencyGraph": {
+        "twui-app": [
+          "twui-header",
+          "twui-pagecontainer",
+          "twui-settings"
+        ],
+        "twui-header": [
+          "twui-text"
+        ],
+        "twui-settings": [
+          "twui-text"
+        ]
+      }
+    },
+    {
+      "filePath": "src/components/molecules/button/button.tsx",
+      "encapsulation": "none",
+      "tag": "twui-button",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'button'"
+            }
+          ],
+          "default": "'button'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "src/components/pages/customstory/customstory.tsx",
+      "encapsulation": "none",
+      "tag": "twui-customstory",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "src/components/organisms/header/header.tsx",
+      "encapsulation": "none",
+      "tag": "twui-header",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "twui-app"
+      ],
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-header": [
+          "twui-text"
+        ],
+        "twui-app": [
+          "twui-header"
+        ]
+      }
+    },
+    {
+      "filePath": "src/components/organisms/nav/nav.tsx",
+      "encapsulation": "none",
+      "tag": "twui-nav",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "src/components/pages/onboarding/onboarding.tsx",
+      "encapsulation": "none",
+      "tag": "twui-onboarding",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "src/components/app/pagecontainer/pagecontainer.tsx",
+      "encapsulation": "none",
+      "tag": "twui-pagecontainer",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "twui-app"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "twui-app": [
+          "twui-pagecontainer"
+        ]
+      }
+    },
+    {
+      "filePath": "src/components/pages/parentallock/parentallock.tsx",
+      "encapsulation": "none",
+      "tag": "twui-parentallock",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "src/components/pages/privacy/privacy.tsx",
+      "encapsulation": "none",
+      "tag": "twui-privacy",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "src/components/pages/profile/profile.tsx",
+      "encapsulation": "none",
+      "tag": "twui-profile",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "src/components/pages/quickstory/quickstory.tsx",
+      "encapsulation": "none",
+      "tag": "twui-quickstory",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "src/components/pages/settings/settings.tsx",
+      "encapsulation": "none",
+      "tag": "twui-settings",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "twui-app"
+      ],
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-settings": [
+          "twui-text"
+        ],
+        "twui-app": [
+          "twui-settings"
+        ]
+      }
+    },
+    {
+      "filePath": "src/components/molecules/text/text.tsx",
+      "encapsulation": "none",
+      "tag": "twui-text",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "format",
+          "type": "\"header\" | \"hint\"",
+          "complexType": {
+            "original": "'header' | 'hint'",
+            "resolved": "\"header\" | \"hint\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "format",
+          "reflectToAttr": true,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "header",
+              "type": "string"
+            },
+            {
+              "value": "hint",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "twui-header",
+        "twui-settings"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "twui-header": [
+          "twui-text"
+        ],
+        "twui-settings": [
+          "twui-text"
+        ]
+      }
+    },
+    {
+      "filePath": "src/components/pages/upgrade/upgrade.tsx",
+      "encapsulation": "none",
+      "tag": "twui-upgrade",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    }
+  ],
+  "typeLibrary": {}
+}
