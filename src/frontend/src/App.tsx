@@ -54,12 +54,6 @@ function App() {
   // Define the app scenes for the full-page carousel
   const appScenes: CarouselItem[] = [
     {
-      title: "Settings",
-      description: "Customize your TaleWeaver experience",
-      icon: "⚙️",
-      component: <SettingsScene />
-    },
-    {
       title: "Quick Play",
       description: "Instantly generate magical bedtime stories",
       icon: "⚡",
@@ -70,6 +64,12 @@ function App() {
       description: "Create personalized stories with detailed customization",
       icon: "🎨",
       component: <CustomStoryScene />
+    },
+    {
+      title: "Settings",
+      description: "Customize your TaleWeaver experience",
+      icon: "⚙️",
+      component: <SettingsScene />
     },
     {
       title: "Upgrade",
