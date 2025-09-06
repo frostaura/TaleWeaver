@@ -7,6 +7,11 @@ import state from '../../app/globalStore';
 })
 export class TWUIProfile {
   render() {
-    return <Host>{state.dictionary.strings.titles.profile}</Host>;
+    return (
+      <Host class="page">
+        <twui-text format="header">{state.dictionary.strings.pages.profile.title}</twui-text>
+        <twui-text format="hint">{state.dictionary.strings.pages.profile.subtitle}</twui-text>
+      </Host>
+    );
   }
 }

@@ -7,6 +7,11 @@ import state from '../../app/globalStore';
 })
 export class TWUIPrivacy {
   render() {
-    return <Host>{state.dictionary.strings.titles.privacy}</Host>;
+    return (
+      <Host class="page">
+        <twui-text format="header">{state.dictionary.strings.pages.privacy.title}</twui-text>
+        <twui-text format="hint">{state.dictionary.strings.pages.privacy.subtitle}</twui-text>
+      </Host>
+    );
   }
 }

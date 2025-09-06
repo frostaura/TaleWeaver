@@ -7,6 +7,11 @@ import state from '../../app/globalStore';
 })
 export class TWUIOnboarding {
   render() {
-    return <Host>{state.dictionary.strings.titles.onboarding}</Host>;
+    return (
+      <Host class="page">
+        <twui-text format="header">{state.dictionary.strings.pages.onboarding.title}</twui-text>
+        <twui-text format="hint">{state.dictionary.strings.pages.onboarding.subtitle}</twui-text>
+      </Host>
+    );
   }
 }

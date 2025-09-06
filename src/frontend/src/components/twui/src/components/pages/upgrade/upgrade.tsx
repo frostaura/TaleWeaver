@@ -7,6 +7,11 @@ import state from '../../app/globalStore';
 })
 export class TWUIUpgrade {
   render() {
-    return <Host>{state.dictionary.strings.titles.upgrade}</Host>;
+    return (
+      <Host class="page">
+        <twui-text format="header">{state.dictionary.strings.pages.upgrade.title}</twui-text>
+        <twui-text format="hint">{state.dictionary.strings.pages.upgrade.subtitle}</twui-text>
+      </Host>
+    );
   }
 }
