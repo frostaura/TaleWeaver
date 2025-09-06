@@ -1,0 +1,14 @@
+twui-header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: var(--header-height);
+
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing);
+  }
+}
