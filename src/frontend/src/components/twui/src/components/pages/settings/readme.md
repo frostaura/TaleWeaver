@@ -7,10 +7,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [twui-app](../../app)
-
 ### Depends on
 
 - [twui-text](../../molecules/text)
@@ -19,7 +15,6 @@
 ```mermaid
 graph TD;
   twui-settings --> twui-text
-  twui-app --> twui-settings
   style twui-settings fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

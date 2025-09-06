@@ -1,0 +1,19 @@
+twui-button {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+
+  button {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing);
+    border: var(--button-border);
+    padding: var(--spacing) var(--spacing-double);
+    border-radius: var(--border-radius-button);
+    font: inherit;
+    background: var(--button-background);
+    color: var(--text-color);
+    font-weight: var(--font-weight-bold);
+    box-shadow: var(--button-shadow);
+  }
+}

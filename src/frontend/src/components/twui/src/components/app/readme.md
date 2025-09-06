@@ -11,16 +11,17 @@
 
 - [twui-header](../organisms/header)
 - [twui-pagecontainer](pagecontainer)
-- [twui-settings](../pages/settings)
+- [twui-onboarding](../pages/onboarding)
 
 ### Graph
 ```mermaid
 graph TD;
   twui-app --> twui-header
   twui-app --> twui-pagecontainer
-  twui-app --> twui-settings
+  twui-app --> twui-onboarding
   twui-header --> twui-text
-  twui-settings --> twui-text
+  twui-onboarding --> twui-text
+  twui-onboarding --> twui-button
   style twui-app fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

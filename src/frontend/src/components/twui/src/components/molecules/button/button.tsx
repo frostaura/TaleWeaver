@@ -7,14 +7,17 @@ import { Component, Prop, h } from '@stencil/core';
 })
 export class TWUIButton {
   @Prop() label?: string;
-  @Prop() icon?: string;
+  @Prop() iconbefore?: string;
+  @Prop() iconafter?: string;
   @Prop() type?: string = 'button';
+  @Prop({ reflect: true }) color?: 'primary' | 'secondary' = 'primary';
 
   render() {
     return (
-      <button type={this.type} aria-label={this.label}>
-        {this.icon && <iconify-icon icon={this.icon}></iconify-icon>}
+      <button color={this.color} type={this.type} aria-label={this.label}>
+        {this.iconbefore && <iconify-icon icon={this.iconbefore}></iconify-icon>}
         {this.label}
+        {this.iconafter && <iconify-icon icon={this.iconafter}></iconify-icon>}
       </button>
     );
   }

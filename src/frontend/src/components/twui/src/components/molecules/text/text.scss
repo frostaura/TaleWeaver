@@ -1,4 +1,5 @@
 twui-text {
+  display: block;
   &[format='header'] {
     font-size: var(--font-size-header);
     font-weight: var(--font-weight-bold);
@@ -6,5 +7,11 @@ twui-text {
   &[format='hint'] {
     font-size: var(--font-size-small);
     color: var(--text-color-dilute);
+  }
+  &[align='center'] {
+    text-align: center;
+  }
+  &[align='right'] {
+    text-align: right;
   }
 }

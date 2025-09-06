@@ -9,7 +9,12 @@ export namespace Components {
     interface TwuiApp {
     }
     interface TwuiButton {
-        "icon"?: string;
+        /**
+          * @default 'primary'
+         */
+        "color"?: 'primary' | 'secondary';
+        "iconafter"?: string;
+        "iconbefore"?: string;
         "label"?: string;
         /**
           * @default 'button'
@@ -37,6 +42,7 @@ export namespace Components {
     interface TwuiSettings {
     }
     interface TwuiText {
+        "align"?: 'center' | 'right';
         "format"?: 'header' | 'hint';
     }
     interface TwuiUpgrade {
@@ -148,7 +154,12 @@ declare namespace LocalJSX {
     interface TwuiApp {
     }
     interface TwuiButton {
-        "icon"?: string;
+        /**
+          * @default 'primary'
+         */
+        "color"?: 'primary' | 'secondary';
+        "iconafter"?: string;
+        "iconbefore"?: string;
         "label"?: string;
         /**
           * @default 'button'
@@ -176,6 +187,7 @@ declare namespace LocalJSX {
     interface TwuiSettings {
     }
     interface TwuiText {
+        "align"?: 'center' | 'right';
         "format"?: 'header' | 'hint';
     }
     interface TwuiUpgrade {

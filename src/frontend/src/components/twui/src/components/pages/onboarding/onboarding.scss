@@ -1,0 +1,10 @@
+twui-onboarding {
+  gap: var(--spacing);
+  flex: 1;
+  justify-content: center;
+
+  img {
+    max-inline-size: 90dvw;
+    align-self: center;
+  }
+}

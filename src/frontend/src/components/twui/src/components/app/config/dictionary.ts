@@ -53,8 +53,8 @@ export const dictionaries: Dictionaries = {
           subtitle: 'Create your own adventure',
         },
         onboarding: {
-          title: 'Onboarding',
-          subtitle: 'Get started quickly',
+          title: 'Welcome to TaleWeaver',
+          subtitle: 'Your magical bedtime story maker.',
         },
         parentallock: {
           title: 'Parental Lock',
@@ -79,82 +79,6 @@ export const dictionaries: Dictionaries = {
         upgrade: {
           title: 'Upgrade',
           subtitle: 'Unlock premium features',
-        },
-      },
-    },
-  },
-  es: {
-    strings: {
-      pages: {
-        customstory: {
-          title: 'Historia personalizada',
-          subtitle: 'Crea tu propia aventura',
-        },
-        onboarding: {
-          title: 'Introducción',
-          subtitle: 'Comienza rápidamente',
-        },
-        parentallock: {
-          title: 'Control parental',
-          subtitle: 'Mantén seguros a tus hijos',
-        },
-        privacy: {
-          title: 'Privacidad',
-          subtitle: 'Gestiona tus datos y seguridad',
-        },
-        profile: {
-          title: 'Perfil',
-          subtitle: 'Actualiza tus datos personales',
-        },
-        quickstory: {
-          title: 'Historia rápida',
-          subtitle: 'Disfruta de una experiencia breve',
-        },
-        settings: {
-          title: 'Configuración',
-          subtitle: 'Personaliza tu experiencia',
-        },
-        upgrade: {
-          title: 'Mejorar',
-          subtitle: 'Desbloquea funciones premium',
-        },
-      },
-    },
-  },
-  de: {
-    strings: {
-      pages: {
-        customstory: {
-          title: 'Eigene Geschichte',
-          subtitle: 'Erstelle dein eigenes Abenteuer',
-        },
-        onboarding: {
-          title: 'Einführung',
-          subtitle: 'Starte schnell durch',
-        },
-        parentallock: {
-          title: 'Kindersicherung',
-          subtitle: 'Schütze deine Kinder',
-        },
-        privacy: {
-          title: 'Datenschutz',
-          subtitle: 'Verwalte deine Daten und Sicherheit',
-        },
-        profile: {
-          title: 'Profil',
-          subtitle: 'Aktualisiere deine persönlichen Daten',
-        },
-        quickstory: {
-          title: 'Schnellgeschichte',
-          subtitle: 'Genieße ein kurzes Erlebnis',
-        },
-        settings: {
-          title: 'Einstellungen',
-          subtitle: 'Passe dein Erlebnis an',
-        },
-        upgrade: {
-          title: 'Upgrade',
-          subtitle: 'Schalte Premium-Funktionen frei',
         },
       },
     },

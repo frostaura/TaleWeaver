@@ -7,10 +7,11 @@ import { Component, Host, Prop, h } from '@stencil/core';
 })
 export class TWUIText {
   @Prop({ reflect: true }) format?: 'header' | 'hint';
+  @Prop({ reflect: true }) align?: 'center' | 'right';
 
   render() {
     return (
-      <Host format={this.format}>
+      <Host format={this.format} align={this.align}>
         <slot></slot>
       </Host>
     );

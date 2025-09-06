@@ -22,7 +22,7 @@ export class TWUIApp {
       <Host lang={this.lang}>
         <twui-header />
         <twui-pagecontainer>
-          <twui-settings />
+          <twui-onboarding />
         </twui-pagecontainer>
       </Host>
     );

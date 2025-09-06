@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-06T13:33:16",
+  "timestamp": "2025-09-06T15:05:33",
   "compiler": {
     "name": "@stencil/core",
     "version": "4.36.3",
@@ -10,7 +10,7 @@
       "filePath": "src/components/app/app.tsx",
       "encapsulation": "none",
       "tag": "twui-app",
-      "readme": "# twui-app\n\n\n",
+      "readme": "# twui-app\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -25,19 +25,20 @@
       "dependencies": [
         "twui-header",
         "twui-pagecontainer",
-        "twui-settings"
+        "twui-onboarding"
       ],
       "dependencyGraph": {
         "twui-app": [
           "twui-header",
           "twui-pagecontainer",
-          "twui-settings"
+          "twui-onboarding"
         ],
         "twui-header": [
           "twui-text"
         ],
-        "twui-settings": [
-          "twui-text"
+        "twui-onboarding": [
+          "twui-text",
+          "twui-button"
         ]
       }
     },
@@ -45,13 +46,47 @@
       "filePath": "src/components/molecules/button/button.tsx",
       "encapsulation": "none",
       "tag": "twui-button",
-      "readme": "# twui-button\n\n\n",
+      "readme": "# twui-button\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
       "props": [
         {
-          "name": "icon",
+          "name": "color",
+          "type": "\"primary\" | \"secondary\"",
+          "complexType": {
+            "original": "'primary' | 'secondary'",
+            "resolved": "\"primary\" | \"secondary\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": true,
+          "docs": "",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "'primary'"
+            }
+          ],
+          "default": "'primary'",
+          "values": [
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "secondary",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "iconafter",
           "type": "string",
           "complexType": {
             "original": "string",
@@ -59,7 +94,30 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "icon",
+          "attr": "iconafter",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "iconbefore",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "iconbefore",
           "reflectToAttr": false,
           "docs": "",
           "docsTags": [],
@@ -132,15 +190,21 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "twui-onboarding"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "twui-onboarding": [
+          "twui-button"
+        ]
+      }
     },
     {
       "filePath": "src/components/pages/customstory/customstory.tsx",
       "encapsulation": "none",
       "tag": "twui-customstory",
-      "readme": "# twui-customstory\n\n\n",
+      "readme": "# twui-customstory\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -152,14 +216,20 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-customstory": [
+          "twui-text"
+        ]
+      }
     },
     {
       "filePath": "src/components/organisms/header/header.tsx",
       "encapsulation": "none",
       "tag": "twui-header",
-      "readme": "# twui-header\n\n\n",
+      "readme": "# twui-header\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -189,7 +259,7 @@
       "filePath": "src/components/organisms/nav/nav.tsx",
       "encapsulation": "none",
       "tag": "twui-nav",
-      "readme": "# twui-nav\n\n\n",
+      "readme": "# twui-nav\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -208,7 +278,7 @@
       "filePath": "src/components/pages/onboarding/onboarding.tsx",
       "encapsulation": "none",
       "tag": "twui-onboarding",
-      "readme": "# twui-onboarding\n\n\n",
+      "readme": "# twui-onboarding\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -219,15 +289,28 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependents": [
+        "twui-app"
+      ],
+      "dependencies": [
+        "twui-text",
+        "twui-button"
+      ],
+      "dependencyGraph": {
+        "twui-onboarding": [
+          "twui-text",
+          "twui-button"
+        ],
+        "twui-app": [
+          "twui-onboarding"
+        ]
+      }
     },
     {
       "filePath": "src/components/app/pagecontainer/pagecontainer.tsx",
       "encapsulation": "none",
       "tag": "twui-pagecontainer",
-      "readme": "# twui-pagecontainer\n\n\n",
+      "readme": "# twui-pagecontainer\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -252,7 +335,7 @@
       "filePath": "src/components/pages/parentallock/parentallock.tsx",
       "encapsulation": "none",
       "tag": "twui-parentallock",
-      "readme": "# twui-parentallock\n\n\n",
+      "readme": "# twui-parentallock\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -264,14 +347,20 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-parentallock": [
+          "twui-text"
+        ]
+      }
     },
     {
       "filePath": "src/components/pages/privacy/privacy.tsx",
       "encapsulation": "none",
       "tag": "twui-privacy",
-      "readme": "# twui-privacy\n\n\n",
+      "readme": "# twui-privacy\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -283,14 +372,20 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-privacy": [
+          "twui-text"
+        ]
+      }
     },
     {
       "filePath": "src/components/pages/profile/profile.tsx",
       "encapsulation": "none",
       "tag": "twui-profile",
-      "readme": "# twui-profile\n\n\n",
+      "readme": "# twui-profile\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -302,14 +397,20 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-profile": [
+          "twui-text"
+        ]
+      }
     },
     {
       "filePath": "src/components/pages/quickstory/quickstory.tsx",
       "encapsulation": "none",
       "tag": "twui-quickstory",
-      "readme": "# twui-quickstory\n\n\n",
+      "readme": "# twui-quickstory\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -321,14 +422,20 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-quickstory": [
+          "twui-text"
+        ]
+      }
     },
     {
       "filePath": "src/components/pages/settings/settings.tsx",
       "encapsulation": "none",
       "tag": "twui-settings",
-      "readme": "# twui-settings\n\n\n",
+      "readme": "# twui-settings\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -339,18 +446,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "twui-app"
-      ],
+      "dependents": [],
       "dependencies": [
         "twui-text"
       ],
       "dependencyGraph": {
         "twui-settings": [
           "twui-text"
-        ],
-        "twui-app": [
-          "twui-settings"
         ]
       }
     },
@@ -358,11 +460,39 @@
       "filePath": "src/components/molecules/text/text.tsx",
       "encapsulation": "none",
       "tag": "twui-text",
-      "readme": "# twui-text\n\n\n",
+      "readme": "# twui-text\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
       "props": [
+        {
+          "name": "align",
+          "type": "\"center\" | \"right\"",
+          "complexType": {
+            "original": "'center' | 'right'",
+            "resolved": "\"center\" | \"right\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "align",
+          "reflectToAttr": true,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "center",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
         {
           "name": "format",
           "type": "\"header\" | \"hint\"",
@@ -399,15 +529,43 @@
       "slots": [],
       "parts": [],
       "dependents": [
+        "twui-customstory",
         "twui-header",
-        "twui-settings"
+        "twui-onboarding",
+        "twui-parentallock",
+        "twui-privacy",
+        "twui-profile",
+        "twui-quickstory",
+        "twui-settings",
+        "twui-upgrade"
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "twui-customstory": [
+          "twui-text"
+        ],
         "twui-header": [
           "twui-text"
         ],
+        "twui-onboarding": [
+          "twui-text"
+        ],
+        "twui-parentallock": [
+          "twui-text"
+        ],
+        "twui-privacy": [
+          "twui-text"
+        ],
+        "twui-profile": [
+          "twui-text"
+        ],
+        "twui-quickstory": [
+          "twui-text"
+        ],
         "twui-settings": [
+          "twui-text"
+        ],
+        "twui-upgrade": [
           "twui-text"
         ]
       }
@@ -416,7 +574,7 @@
       "filePath": "src/components/pages/upgrade/upgrade.tsx",
       "encapsulation": "none",
       "tag": "twui-upgrade",
-      "readme": "# twui-upgrade\n\n\n",
+      "readme": "# twui-upgrade\r\n\r\n\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -428,8 +586,14 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-upgrade": [
+          "twui-text"
+        ]
+      }
     }
   ],
   "typeLibrary": {}
