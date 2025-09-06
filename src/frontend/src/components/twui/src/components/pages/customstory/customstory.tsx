@@ -1,4 +1,5 @@
 import { Component, Host, h } from '@stencil/core';
+import state from '../../app/globalStore';
 
 @Component({
   tag: 'twui-customstory',
@@ -6,6 +7,6 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class TWUICustomstory {
   render() {
-    return <Host>Custom Story</Host>;
+    return <Host>{state.dictionary.strings.titles.customstory}</Host>;
   }
 }
