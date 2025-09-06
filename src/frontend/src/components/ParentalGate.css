@@ -1,0 +1,23 @@
+/* ParentalLockScene.css already exists, but let's ensure it includes common parental gate styles */
+.parental-gate {
+  background: linear-gradient(135deg, 
+    rgba(30, 30, 30, 0.95) 0%, 
+    rgba(60, 60, 80, 0.95) 100%);
+  min-height: 100vh;
+}
+
+.parental-gate .ant-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.parental-gate .ant-btn-primary {
+  background: #1890ff;
+  border-color: #1890ff;
+}
+
+.parental-gate .ant-btn-primary:hover {
+  background: #40a9ff;
+  border-color: #40a9ff;
+}
