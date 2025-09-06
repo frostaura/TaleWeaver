@@ -1,4 +1,5 @@
 import { Component, Host, h } from '@stencil/core';
+import state from '../../app/globalStore';
 
 @Component({
   tag: 'twui-parentallock',
@@ -6,6 +7,6 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class TWUIParentallock {
   render() {
-    return <Host>Parental Lock</Host>;
+    return <Host>{state.dictionary.strings.titles.parentallock}</Host>;
   }
 }

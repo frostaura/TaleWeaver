@@ -1,4 +1,5 @@
 import { Component, Host, h } from '@stencil/core';
+import state from '../../app/globalStore';
 
 @Component({
   tag: 'twui-upgrade',
@@ -6,6 +7,6 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class TWUIUpgrade {
   render() {
-    return <Host>Upgrade</Host>;
+    return <Host>{state.dictionary.strings.titles.upgrade}</Host>;
   }
 }

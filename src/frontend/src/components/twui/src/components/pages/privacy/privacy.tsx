@@ -1,4 +1,5 @@
 import { Component, Host, h } from '@stencil/core';
+import state from '../../app/globalStore';
 
 @Component({
   tag: 'twui-privacy',
@@ -6,6 +7,6 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class TWUIPrivacy {
   render() {
-    return <Host>Privacy</Host>;
+    return <Host>{state.dictionary.strings.titles.privacy}</Host>;
   }
 }

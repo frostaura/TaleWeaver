@@ -1,4 +1,5 @@
 import { Component, Host, h } from '@stencil/core';
+import state from '../../app/globalStore';
 
 @Component({
   tag: 'twui-onboarding',
@@ -6,6 +7,6 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class TWUIOnboarding {
   render() {
-    return <Host>Onboarding</Host>;
+    return <Host>{state.dictionary.strings.titles.onboarding}</Host>;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, Host, h } from '@stencil/core';
+import state from '../../app/globalStore';
 
 @Component({
   tag: 'twui-profile',
@@ -6,6 +7,6 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class TWUIProfile {
   render() {
-    return <Host>Profile</Host>;
+    return <Host>{state.dictionary.strings.titles.profile}</Host>;
   }
 }
