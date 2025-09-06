@@ -1,0 +1,174 @@
+import React from 'react';
+import { 
+  Typography, 
+  Card, 
+  Space, 
+  Button,
+  Divider,
+  Alert
+} from 'antd';
+import { 
+  CheckOutlined,
+  MailOutlined,
+  InfoCircleOutlined,
+  SafetyOutlined
+} from '@ant-design/icons';
+
+const { Title, Paragraph, Text } = Typography;
+
+const PrivacyPolicyScene: React.FC = () => {
+  const handleContactClick = () => {
+    window.open('mailto:privacy@taleweaver.app?subject=Privacy Policy Question', '_blank');
+  };
+
+  return (
+    <div className="privacy-policy-scene" style={{ padding: '20px', maxHeight: '100vh', overflowY: 'auto' }}>
+      <div className="scene-content" style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <Title level={1} style={{ textAlign: 'center', color: 'white', marginBottom: '8px' }}>
+          🛡️ Privacy Policy
+        </Title>
+        <Paragraph style={{ textAlign: 'center', color: 'rgba(255, 255, 255, 0.75)', fontSize: '16px', marginBottom: '32px' }}>
+          Your child's privacy and safety are our top priority
+        </Paragraph>
+
+        <Space direction="vertical" size="large" style={{ width: '100%' }}>
+          <Alert
+            message="Privacy-First Design"
+            description="TaleWeaver is designed with privacy at its core. No personal information about your child ever leaves your device."
+            type="success"
+            icon={<CheckOutlined />}
+            showIcon
+          />
+
+          <Card title={<><InfoCircleOutlined /> What TaleWeaver Is</>}>
+            <Paragraph>
+              TaleWeaver is an AI-powered bedtime story application designed specifically for children ages 3-8. 
+              We create magical, personalized stories while keeping your family's privacy completely secure.
+            </Paragraph>
+          </Card>
+
+          <Card title={<><SafetyOutlined /> Data Collection</>}>
+            <Space direction="vertical" size={16} style={{ width: '100%' }}>
+              <Alert
+                message="Zero Personal Data Collection"
+                description="We do NOT collect, store, or share any personal information about children."
+                type="info"
+                showIcon
+              />
+              
+              <div>
+                <Text strong>What stays on your device:</Text>
+                <ul style={{ color: 'rgba(255, 255, 255, 0.85)', marginTop: '8px' }}>
+                  <li>Child's name and age (if you provide it)</li>
+                  <li>Story preferences and themes</li>
+                  <li>App settings</li>
+                  <li>Generated story history</li>
+                </ul>
+              </div>
+
+              <div>
+                <Text strong>What we send for story generation:</Text>
+                <ul style={{ color: 'rgba(255, 255, 255, 0.85)', marginTop: '8px' }}>
+                  <li>Anonymous story themes (e.g., "adventure," "animals")</li>
+                  <li>Age-appropriate content guidelines</li>
+                  <li>NO personal names, locations, or identifying information</li>
+                </ul>
+              </div>
+            </Space>
+          </Card>
+
+          <Card title="👨‍👩‍👧‍👦 Parental Control">
+            <Space direction="vertical" size={16} style={{ width: '100%' }}>
+              <Paragraph>
+                <Text strong>You are in complete control:</Text>
+              </Paragraph>
+              <ul style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
+                <li>Only parents can make purchases or manage settings</li>
+                <li>Children cannot submit personal information</li>
+                <li>All sensitive actions are protected by parental gates</li>
+                <li>All data stays on your device</li>
+              </ul>
+            </Space>
+          </Card>
+
+          <Card title="🔧 Third-Party Services">
+            <Space direction="vertical" size={16} style={{ width: '100%' }}>
+              <div>
+                <Text strong>We use these services for app functionality:</Text>
+                <ul style={{ color: 'rgba(255, 255, 255, 0.85)', marginTop: '8px' }}>
+                  <li><Text strong>OpenAI API:</Text> For AI story generation (anonymized prompts only)</li>
+                  <li><Text strong>ElevenLabs API:</Text> For voice synthesis (text-to-speech only)</li>
+                </ul>
+              </div>
+              
+              <div>
+                <Text strong>We do NOT use:</Text>
+                <ul style={{ color: 'rgba(255, 255, 255, 0.85)', marginTop: '8px' }}>
+                  <li>Analytics or tracking services</li>
+                  <li>Advertising networks</li>
+                  <li>Social media integrations</li>
+                  <li>Any services that collect personal data</li>
+                </ul>
+              </div>
+            </Space>
+          </Card>
+
+          <Card title="✅ Content Safety">
+            <Space direction="vertical" size={16} style={{ width: '100%' }}>
+              <Paragraph>
+                All stories generated by TaleWeaver are:
+              </Paragraph>
+              <ul style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
+                <li>Filtered for family-friendly content</li>
+                <li>Designed for children ages 3-8</li>
+                <li>Free from violence, inappropriate themes, or scary content</li>
+                <li>Supervised by AI safety guidelines specifically designed for children</li>
+              </ul>
+              
+              <Alert
+                message="Parent Supervision Recommended"
+                description="While our AI is designed to generate safe content, we recommend parents preview stories for younger children."
+                type="warning"
+                showIcon
+              />
+            </Space>
+          </Card>
+
+          <Card title="📧 Contact Us">
+            <Space direction="vertical" size={16} style={{ width: '100%' }}>
+              <Paragraph>
+                For privacy questions, concerns, or data deletion requests, parents can contact us:
+              </Paragraph>
+              
+              <div style={{ textAlign: 'center' }}>
+                <Button 
+                  type="primary" 
+                  icon={<MailOutlined />} 
+                  size="large"
+                  onClick={handleContactClick}
+                >
+                  Contact Privacy Team
+                </Button>
+              </div>
+              
+              <Paragraph style={{ textAlign: 'center', fontSize: '14px' }}>
+                We respond to all privacy inquiries within 48 hours.
+              </Paragraph>
+            </Space>
+          </Card>
+
+          <Divider />
+          
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <Text type="secondary" style={{ fontSize: '12px' }}>
+              This privacy policy is designed to be clear, concise, and parent-friendly.<br />
+              Last Updated: December 2024 | Compliant with COPPA and GDPR-K
+            </Text>
+          </div>
+        </Space>
+      </div>
+    </div>
+  );
+};
+
+export default PrivacyPolicyScene;

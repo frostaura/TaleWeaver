@@ -11,21 +11,27 @@ import {
   Space,
   Divider,
   message,
-  Tag 
+  Tag,
+  Alert
 } from 'antd';
 import { 
   SoundOutlined, 
   BgColorsOutlined, 
   UserOutlined, 
-  SafetyOutlined 
+  SafetyOutlined,
+  CheckOutlined,
+  LockOutlined
 } from '@ant-design/icons';
 import { getDefaultParentalSettings, saveParentalSettings, type ParentalSettings } from '../../services/api';
 import './SettingsScene.css';
+import ParentalGate from '../ParentalGate';
 
 const { Title, Paragraph } = Typography;
 
 const SettingsScene: React.FC = () => {
   const [settings, setSettings] = useState<ParentalSettings>(getDefaultParentalSettings());
+  const [showParentalGate, setShowParentalGate] = useState(false);
+  const [pendingAction, setPendingAction] = useState<string | null>(null);
 
   useEffect(() => {
     // Load settings from localStorage on component mount
@@ -67,10 +73,48 @@ const SettingsScene: React.FC = () => {
     }
   };
 
+  const handleSensitiveAction = (action: string) => {
+    setPendingAction(action);
+    setShowParentalGate(true);
+  };
+
+  const handleParentalGateSuccess = () => {
+    setShowParentalGate(false);
+    // Handle the pending action
+    if (pendingAction === 'save-settings') {
+      handleSaveSettings();
+    } else if (pendingAction === 'modify-safety') {
+      message.info('Safety settings can now be modified');
+    }
+    setPendingAction(null);
+  };
+
+  const handleParentalGateCancel = () => {
+    setShowParentalGate(false);
+    setPendingAction(null);
+  };
+
+  const handlePrivacyPolicyClick = () => {
+    // In a real app, this might navigate to a privacy policy view
+    // For now, we'll show an alert
+    alert('Privacy policy would be shown here. In the full app, this would navigate to the privacy policy scene.');
+  };
+
   const availableThemes = [
     'adventure', 'friendship', 'magic', 'animals', 'nature', 
     'fairy tales', 'space', 'ocean', 'forest', 'dreams'
   ];
+
+  if (showParentalGate) {
+    return (
+      <ParentalGate
+        onSuccess={handleParentalGateSuccess}
+        onCancel={handleParentalGateCancel}
+        title="Settings Access"
+        description="Parent verification required to modify settings"
+      />
+    );
+  }
   return (
     <div className="settings-scene">
       <div className="scene-content">
@@ -209,13 +253,41 @@ const SettingsScene: React.FC = () => {
               </Space>
             </Card>
           </Col>
+          
+          <Col xs={24} md={12} style={{ marginBottom: '16px' }}>
+            <Card 
+              title={<><CheckOutlined /> Privacy & Legal</>}
+              style={{ height: '100%' }}
+            >
+              <Space direction="vertical" style={{ width: '100%' }} size="large">
+                <Alert
+                  message="Your privacy is protected"
+                  description="No personal data is collected or shared"
+                  type="success"
+                  showIcon
+                />
+                <Button 
+                  type="link" 
+                  icon={<CheckOutlined />}
+                  onClick={handlePrivacyPolicyClick}
+                  style={{ padding: '0', height: 'auto' }}
+                >
+                  View Privacy Policy
+                </Button>
+              </Space>
+            </Card>
+          </Col>
         </Row>
         
         <Divider />
         
         <Row justify="center" gutter={16}>
           <Col>
-            <Button type="primary" size="large" onClick={handleSaveSettings}>
+            <Button 
+              type="primary" 
+              size="large"
+              onClick={() => handleSensitiveAction('save-settings')}
+            >
               Save Settings
             </Button>
           </Col>
