@@ -1,10 +1,16 @@
 twui-text {
   display: block;
+  font-size: var(--font-size-small);
   &[format='header'] {
     font-size: var(--font-size-header);
     font-weight: var(--font-weight-bold);
+    color: var(--text-color);
   }
-  &[format='hint'] {
+  &[format='subheading'] {
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-bold);
+  }
+  &[format='secondary'] {
     font-size: var(--font-size-small);
     color: var(--text-color-dilute);
   }

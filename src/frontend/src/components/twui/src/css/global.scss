@@ -1,17 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
   --font-size: 1rem;
   --font-size-small: 0.85rem;
   --font-size-header: 1.75rem;
-  --font-line-height: 1.4;
-  --font-weight: 400;
+  --font-line-height: 1.5;
+  --font-weight: 300;
   --font-weight-bold: 700;
   --icon-size: 1.5rem;
   --spacing: 1rem;
+  --spacing-half: calc(var(--spacing) / 2);
   --spacing-double: calc(var(--spacing) * 2);
   --header-height: 4rem;
   --border-radius: 0.5rem;
   --border-radius-button: 0.75rem;
+
+  --status-info-color: rgba(6, 132, 163, 0.85);
+  --status-success-color: #06a335;
+  --status-warning-color: #bd690d;
+  --status-error-color: #a30628;
 
   --button-background-color: hsl(268, 51%, 40%);
 
@@ -20,6 +26,6 @@
   --button-shadow: 0px 3px 3px rgba(0, 0, 0, 0.15), inset 0 1px 1px hsl(from var(--button-background-color) h s calc(l + 5));
 
   --text-color: #fff;
-  --text-color-dilute: #72729b;
-  --background-app: linear-gradient(to bottom, #020111 10%, #3a3a52 100%);
+  --text-color-dilute: #b9aad2;
+  --background-app: linear-gradient(to bottom, #151236 10%, #3a3a52 100%);
 }

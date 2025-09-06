@@ -15,7 +15,7 @@ export class TWUIOnboarding {
           <twui-text format="header" align="center">
             {state.dictionary.strings.pages.onboarding.title}
           </twui-text>
-          <twui-text format="hint" align="center">
+          <twui-text format="secondary" align="center">
             {state.dictionary.strings.pages.onboarding.subtitle}
           </twui-text>
         </section>

@@ -6,7 +6,7 @@ import { Component, Host, Prop, h } from '@stencil/core';
   shadow: false,
 })
 export class TWUIText {
-  @Prop({ reflect: true }) format?: 'header' | 'hint';
+  @Prop({ reflect: true }) format?: 'header' | 'subheading' | 'secondary';
   @Prop({ reflect: true }) align?: 'center' | 'right';
 
   render() {

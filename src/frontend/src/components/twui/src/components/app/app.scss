@@ -1,5 +1,5 @@
 twui-app {
-  font-family: 'Merriweather', serif;
+  font-family: 'Noto Serif', serif;
   font-optical-sizing: auto;
   font-weight: var(--font-weight);
   font-style: normal;
@@ -10,7 +10,8 @@ twui-app {
   flex-direction: column;
   min-block-size: 100dvh;
   max-inline-size: 100dvw;
-  background: var(--background-app);
+  background-image: var(--background-app);
+  background-attachment: fixed;
 
   -webkit-tap-highlight-color: transparent;
 
@@ -23,6 +24,7 @@ twui-app {
   .page {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing);
   }
 
   iconify-icon {
@@ -30,5 +32,19 @@ twui-app {
     width: 1em;
     height: 1em;
     font-size: 1.5rem;
+  }
+
+  ul {
+    font-size: var(--font-size-small);
+    color: var(--text-color-dilute);
+    list-style: circle;
+    list-style-position: outside;
+    margin-left: var(--spacing);
+    li {
+      margin-bottom: var(--spacing-half);
+      &:last-of-type {
+        margin: 0;
+      }
+    }
   }
 }

@@ -1,11 +1,12 @@
 twui-button {
   display: flex;
   flex-direction: row;
-  align-self: center;
 
   button {
+    flex: 1;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: var(--spacing);
     border: var(--button-border);
     padding: var(--spacing) var(--spacing-double);
@@ -15,5 +16,11 @@ twui-button {
     color: var(--text-color);
     font-weight: var(--font-weight-bold);
     box-shadow: var(--button-shadow);
+
+    &[color='secondary'] {
+    }
+
+    &[color='link'] {
+    }
   }
 }

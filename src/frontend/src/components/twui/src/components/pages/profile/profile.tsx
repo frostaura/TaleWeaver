@@ -10,7 +10,7 @@ export class TWUIProfile {
     return (
       <Host class="page">
         <twui-text format="header">{state.dictionary.strings.pages.profile.title}</twui-text>
-        <twui-text format="hint">{state.dictionary.strings.pages.profile.subtitle}</twui-text>
+        <twui-text format="secondary">{state.dictionary.strings.pages.profile.subtitle}</twui-text>
       </Host>
     );
   }

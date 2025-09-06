@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-06T15:05:33",
+  "timestamp": "2025-09-06T22:30:30",
   "compiler": {
     "name": "@stencil/core",
     "version": "4.36.3",
@@ -24,21 +24,15 @@
       "dependents": [],
       "dependencies": [
         "twui-header",
-        "twui-pagecontainer",
-        "twui-onboarding"
+        "twui-pagecontainer"
       ],
       "dependencyGraph": {
         "twui-app": [
           "twui-header",
-          "twui-pagecontainer",
-          "twui-onboarding"
+          "twui-pagecontainer"
         ],
         "twui-header": [
           "twui-text"
-        ],
-        "twui-onboarding": [
-          "twui-text",
-          "twui-button"
         ]
       }
     },
@@ -53,26 +47,20 @@
       "props": [
         {
           "name": "color",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"link\" | \"secondary\"",
           "complexType": {
-            "original": "'primary' | 'secondary'",
-            "resolved": "\"primary\" | \"secondary\"",
+            "original": "'secondary' | 'link'",
+            "resolved": "\"link\" | \"secondary\"",
             "references": {}
           },
           "mutable": false,
           "attr": "color",
           "reflectToAttr": true,
           "docs": "",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "'primary'"
-            }
-          ],
-          "default": "'primary'",
+          "docsTags": [],
           "values": [
             {
-              "value": "primary",
+              "value": "link",
               "type": "string"
             },
             {
@@ -191,12 +179,93 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "twui-onboarding"
+        "twui-onboarding",
+        "twui-privacy"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "twui-onboarding": [
           "twui-button"
+        ],
+        "twui-privacy": [
+          "twui-button"
+        ]
+      }
+    },
+    {
+      "filePath": "src/components/organisms/card/card.tsx",
+      "encapsulation": "none",
+      "tag": "twui-card",
+      "readme": "# twui-header\r\n\r\n\r\n\r",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "twui-privacy"
+      ],
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-card": [
+          "twui-text"
+        ],
+        "twui-privacy": [
+          "twui-card"
         ]
       }
     },
@@ -256,6 +325,138 @@
       }
     },
     {
+      "filePath": "src/components/molecules/infobox/infobox.tsx",
+      "encapsulation": "none",
+      "tag": "twui-infobox",
+      "readme": "# twui-button\r\n\r\n\r\n\r",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "color",
+          "type": "\"error\" | \"success\" | \"warning\"",
+          "complexType": {
+            "original": "'success' | 'warning' | 'error'",
+            "resolved": "\"error\" | \"success\" | \"warning\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": true,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "error",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "message",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "twui-privacy"
+      ],
+      "dependencies": [
+        "twui-text"
+      ],
+      "dependencyGraph": {
+        "twui-infobox": [
+          "twui-text"
+        ],
+        "twui-privacy": [
+          "twui-infobox"
+        ]
+      }
+    },
+    {
       "filePath": "src/components/organisms/nav/nav.tsx",
       "encapsulation": "none",
       "tag": "twui-nav",
@@ -289,9 +490,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "twui-app"
-      ],
+      "dependents": [],
       "dependencies": [
         "twui-text",
         "twui-button"
@@ -300,9 +499,6 @@
         "twui-onboarding": [
           "twui-text",
           "twui-button"
-        ],
-        "twui-app": [
-          "twui-onboarding"
         ]
       }
     },
@@ -373,10 +569,22 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "twui-text"
+        "twui-text",
+        "twui-card",
+        "twui-infobox",
+        "twui-button"
       ],
       "dependencyGraph": {
         "twui-privacy": [
+          "twui-text",
+          "twui-card",
+          "twui-infobox",
+          "twui-button"
+        ],
+        "twui-card": [
+          "twui-text"
+        ],
+        "twui-infobox": [
           "twui-text"
         ]
       }
@@ -495,10 +703,10 @@
         },
         {
           "name": "format",
-          "type": "\"header\" | \"hint\"",
+          "type": "\"header\" | \"secondary\" | \"subheading\"",
           "complexType": {
-            "original": "'header' | 'hint'",
-            "resolved": "\"header\" | \"hint\"",
+            "original": "'header' | 'subheading' | 'secondary'",
+            "resolved": "\"header\" | \"secondary\" | \"subheading\"",
             "references": {}
           },
           "mutable": false,
@@ -512,7 +720,11 @@
               "type": "string"
             },
             {
-              "value": "hint",
+              "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "subheading",
               "type": "string"
             }
           ],
@@ -529,8 +741,10 @@
       "slots": [],
       "parts": [],
       "dependents": [
+        "twui-card",
         "twui-customstory",
         "twui-header",
+        "twui-infobox",
         "twui-onboarding",
         "twui-parentallock",
         "twui-privacy",
@@ -541,10 +755,16 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "twui-card": [
+          "twui-text"
+        ],
         "twui-customstory": [
           "twui-text"
         ],
         "twui-header": [
+          "twui-text"
+        ],
+        "twui-infobox": [
           "twui-text"
         ],
         "twui-onboarding": [

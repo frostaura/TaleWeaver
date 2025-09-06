@@ -10,7 +10,7 @@ export class TWUIButton {
   @Prop() iconbefore?: string;
   @Prop() iconafter?: string;
   @Prop() type?: string = 'button';
-  @Prop({ reflect: true }) color?: 'primary' | 'secondary' = 'primary';
+  @Prop({ reflect: true }) color?: 'secondary' | 'link';
 
   render() {
     return (

@@ -7,18 +7,20 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                  | Default     |
-| -------- | --------- | ----------- | --------------------- | ----------- |
-| `align`  | `align`   |             | `"center" \| "right"` | `undefined` |
-| `format` | `format`  |             | `"header" \| "hint"`  | `undefined` |
+| Property | Attribute | Description | Type                                      | Default     |
+| -------- | --------- | ----------- | ----------------------------------------- | ----------- |
+| `align`  | `align`   |             | `"center" \| "right"`                     | `undefined` |
+| `format` | `format`  |             | `"header" \| "secondary" \| "subheading"` | `undefined` |
 
 
 ## Dependencies
 
 ### Used by
 
+ - [twui-card](../../organisms/card)
  - [twui-customstory](../../pages/customstory)
  - [twui-header](../../organisms/header)
+ - [twui-infobox](../infobox)
  - [twui-onboarding](../../pages/onboarding)
  - [twui-parentallock](../../pages/parentallock)
  - [twui-privacy](../../pages/privacy)
@@ -30,8 +32,10 @@
 ### Graph
 ```mermaid
 graph TD;
+  twui-card --> twui-text
   twui-customstory --> twui-text
   twui-header --> twui-text
+  twui-infobox --> twui-text
   twui-onboarding --> twui-text
   twui-parentallock --> twui-text
   twui-privacy --> twui-text

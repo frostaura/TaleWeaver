@@ -7,10 +7,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [twui-app](../../app)
-
 ### Depends on
 
 - [twui-text](../../molecules/text)
@@ -21,7 +17,6 @@
 graph TD;
   twui-onboarding --> twui-text
   twui-onboarding --> twui-button
-  twui-app --> twui-onboarding
   style twui-onboarding fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

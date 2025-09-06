@@ -9,10 +9,7 @@ export namespace Components {
     interface TwuiApp {
     }
     interface TwuiButton {
-        /**
-          * @default 'primary'
-         */
-        "color"?: 'primary' | 'secondary';
+        "color"?: 'secondary' | 'link';
         "iconafter"?: string;
         "iconbefore"?: string;
         "label"?: string;
@@ -21,9 +18,19 @@ export namespace Components {
          */
         "type"?: string;
     }
+    interface TwuiCard {
+        "icon"?: string;
+        "label"?: string;
+    }
     interface TwuiCustomstory {
     }
     interface TwuiHeader {
+    }
+    interface TwuiInfobox {
+        "color"?: 'success' | 'warning' | 'error';
+        "icon"?: string;
+        "label"?: string;
+        "message"?: string;
     }
     interface TwuiNav {
     }
@@ -43,7 +50,7 @@ export namespace Components {
     }
     interface TwuiText {
         "align"?: 'center' | 'right';
-        "format"?: 'header' | 'hint';
+        "format"?: 'header' | 'subheading' | 'secondary';
     }
     interface TwuiUpgrade {
     }
@@ -61,6 +68,12 @@ declare global {
         prototype: HTMLTwuiButtonElement;
         new (): HTMLTwuiButtonElement;
     };
+    interface HTMLTwuiCardElement extends Components.TwuiCard, HTMLStencilElement {
+    }
+    var HTMLTwuiCardElement: {
+        prototype: HTMLTwuiCardElement;
+        new (): HTMLTwuiCardElement;
+    };
     interface HTMLTwuiCustomstoryElement extends Components.TwuiCustomstory, HTMLStencilElement {
     }
     var HTMLTwuiCustomstoryElement: {
@@ -72,6 +85,12 @@ declare global {
     var HTMLTwuiHeaderElement: {
         prototype: HTMLTwuiHeaderElement;
         new (): HTMLTwuiHeaderElement;
+    };
+    interface HTMLTwuiInfoboxElement extends Components.TwuiInfobox, HTMLStencilElement {
+    }
+    var HTMLTwuiInfoboxElement: {
+        prototype: HTMLTwuiInfoboxElement;
+        new (): HTMLTwuiInfoboxElement;
     };
     interface HTMLTwuiNavElement extends Components.TwuiNav, HTMLStencilElement {
     }
@@ -136,8 +155,10 @@ declare global {
     interface HTMLElementTagNameMap {
         "twui-app": HTMLTwuiAppElement;
         "twui-button": HTMLTwuiButtonElement;
+        "twui-card": HTMLTwuiCardElement;
         "twui-customstory": HTMLTwuiCustomstoryElement;
         "twui-header": HTMLTwuiHeaderElement;
+        "twui-infobox": HTMLTwuiInfoboxElement;
         "twui-nav": HTMLTwuiNavElement;
         "twui-onboarding": HTMLTwuiOnboardingElement;
         "twui-pagecontainer": HTMLTwuiPagecontainerElement;
@@ -154,10 +175,7 @@ declare namespace LocalJSX {
     interface TwuiApp {
     }
     interface TwuiButton {
-        /**
-          * @default 'primary'
-         */
-        "color"?: 'primary' | 'secondary';
+        "color"?: 'secondary' | 'link';
         "iconafter"?: string;
         "iconbefore"?: string;
         "label"?: string;
@@ -166,9 +184,19 @@ declare namespace LocalJSX {
          */
         "type"?: string;
     }
+    interface TwuiCard {
+        "icon"?: string;
+        "label"?: string;
+    }
     interface TwuiCustomstory {
     }
     interface TwuiHeader {
+    }
+    interface TwuiInfobox {
+        "color"?: 'success' | 'warning' | 'error';
+        "icon"?: string;
+        "label"?: string;
+        "message"?: string;
     }
     interface TwuiNav {
     }
@@ -188,15 +216,17 @@ declare namespace LocalJSX {
     }
     interface TwuiText {
         "align"?: 'center' | 'right';
-        "format"?: 'header' | 'hint';
+        "format"?: 'header' | 'subheading' | 'secondary';
     }
     interface TwuiUpgrade {
     }
     interface IntrinsicElements {
         "twui-app": TwuiApp;
         "twui-button": TwuiButton;
+        "twui-card": TwuiCard;
         "twui-customstory": TwuiCustomstory;
         "twui-header": TwuiHeader;
+        "twui-infobox": TwuiInfobox;
         "twui-nav": TwuiNav;
         "twui-onboarding": TwuiOnboarding;
         "twui-pagecontainer": TwuiPagecontainer;
@@ -215,8 +245,10 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "twui-app": LocalJSX.TwuiApp & JSXBase.HTMLAttributes<HTMLTwuiAppElement>;
             "twui-button": LocalJSX.TwuiButton & JSXBase.HTMLAttributes<HTMLTwuiButtonElement>;
+            "twui-card": LocalJSX.TwuiCard & JSXBase.HTMLAttributes<HTMLTwuiCardElement>;
             "twui-customstory": LocalJSX.TwuiCustomstory & JSXBase.HTMLAttributes<HTMLTwuiCustomstoryElement>;
             "twui-header": LocalJSX.TwuiHeader & JSXBase.HTMLAttributes<HTMLTwuiHeaderElement>;
+            "twui-infobox": LocalJSX.TwuiInfobox & JSXBase.HTMLAttributes<HTMLTwuiInfoboxElement>;
             "twui-nav": LocalJSX.TwuiNav & JSXBase.HTMLAttributes<HTMLTwuiNavElement>;
             "twui-onboarding": LocalJSX.TwuiOnboarding & JSXBase.HTMLAttributes<HTMLTwuiOnboardingElement>;
             "twui-pagecontainer": LocalJSX.TwuiPagecontainer & JSXBase.HTMLAttributes<HTMLTwuiPagecontainerElement>;

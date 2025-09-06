@@ -62,7 +62,7 @@ export const dictionaries: Dictionaries = {
         },
         privacy: {
           title: 'Privacy',
-          subtitle: 'Manage your data and security',
+          subtitle: 'Your childs privacy and safety are our top priority',
         },
         profile: {
           title: 'Profile',
