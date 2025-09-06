@@ -32,7 +32,8 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-      copy: [{ src: 'css' }, { src: 'images' }, { src: '*.html' }],
+      copy: [{ src: 'css' }, { src: '*.html' }],
+      dir: 'www',
     },
   ],
   testing: {
