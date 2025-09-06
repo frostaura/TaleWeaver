@@ -1,0 +1,7 @@
+twui-pagecontainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing);
+  padding-top: var(--header-height);
+}
