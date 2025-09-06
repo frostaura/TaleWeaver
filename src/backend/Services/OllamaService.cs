@@ -10,6 +10,7 @@ public interface IOllamaService
     Task<string> GenerateCustomStoryAsync(CustomStoryRequest request);
     Task<SafetyCheckResponse> CheckContentSafetyAsync(string content, ParentalSettings settings);
     Task<TtsParameters> GetOptimalTtsParametersAsync(string storyText, ParentalSettings settings);
+    Task EnsureModelExistsAsync(string modelName = "llama3.2:1b");
 }
 
 public class OllamaService : IOllamaService
@@ -17,6 +18,7 @@ public class OllamaService : IOllamaService
     private readonly HttpClient _httpClient;
     private readonly ILogger<OllamaService> _logger;
     private readonly string _baseUrl;
+    private readonly string _defaultModel = "llama3.2:1b";
 
     public OllamaService(HttpClient httpClient, ILogger<OllamaService> logger, IConfiguration configuration)
     {
@@ -59,13 +61,74 @@ public class OllamaService : IOllamaService
         return ParseTtsParametersResponse(response, settings);
     }
 
+    public async Task EnsureModelExistsAsync(string modelName = "llama3.2:1b")
+    {
+        try
+        {
+            _logger.LogInformation("Checking if model {ModelName} exists", modelName);
+            
+            // First, check if the model is already available
+            var modelsResponse = await _httpClient.GetAsync($"{_baseUrl}/api/tags");
+            modelsResponse.EnsureSuccessStatusCode();
+            
+            var modelsJson = await modelsResponse.Content.ReadAsStringAsync();
+            var modelsData = JsonSerializer.Deserialize<JsonElement>(modelsJson);
+            
+            // Check if the model exists in the list
+            if (modelsData.TryGetProperty("models", out var models))
+            {
+                foreach (var model in models.EnumerateArray())
+                {
+                    if (model.TryGetProperty("name", out var name) && 
+                        name.GetString()?.StartsWith(modelName) == true)
+                    {
+                        _logger.LogInformation("Model {ModelName} is already available", modelName);
+                        return;
+                    }
+                }
+            }
+            
+            // Model doesn't exist, pull it
+            _logger.LogInformation("Model {ModelName} not found, pulling from Ollama hub", modelName);
+            
+            var pullRequest = new
+            {
+                name = modelName,
+                stream = false
+            };
+            
+            var pullJson = JsonSerializer.Serialize(pullRequest);
+            var pullContent = new StringContent(pullJson, System.Text.Encoding.UTF8, "application/json");
+            
+            // Set a longer timeout for model pulling
+            using var cts = new CancellationTokenSource(TimeSpan.FromMinutes(10));
+            var pullResponse = await _httpClient.PostAsync($"{_baseUrl}/api/pull", pullContent, cts.Token);
+            pullResponse.EnsureSuccessStatusCode();
+            
+            _logger.LogInformation("Successfully pulled model {ModelName}", modelName);
+        }
+        catch (TaskCanceledException ex) when (ex.InnerException is TimeoutException)
+        {
+            _logger.LogError("Timeout while pulling model {ModelName}", modelName);
+            throw new InvalidOperationException($"Timeout while pulling model {modelName}. Please try again later.", ex);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error ensuring model {ModelName} exists", modelName);
+            throw new InvalidOperationException($"Failed to ensure model {modelName} is available", ex);
+        }
+    }
+
     private async Task<string> CallOllamaAsync(string prompt)
     {
         try
         {
+            // Ensure the model exists before making the call
+            await EnsureModelExistsAsync(_defaultModel);
+            
             var request = new
             {
-                model = "llama3.2:1b", // Lightweight model for our use case
+                model = _defaultModel, // Use the default model field
                 prompt = prompt,
                 stream = false,
                 options = new
@@ -247,13 +310,12 @@ Respond in JSON format with optimal parameters for parler-tts-mini model:
                 
                 return new TtsParameters
                 {
-                    VoiceName = parsed.TryGetProperty("voiceName", out var voice) ? 
-                        voice.GetString() ?? "en_speaker_6" : "en_speaker_6",
+                    VoiceName = GetOptimalVoiceName(settings.VoiceType, settings.ChildAge),
                     Speed = parsed.TryGetProperty("speed", out var speed) ? 
-                        speed.GetSingle() : 1.0f,
+                        Math.Clamp(speed.GetSingle(), 0.7f, 1.3f) : GetOptimalSpeed(settings.ChildAge),
                     Description = parsed.TryGetProperty("description", out var desc) ? 
-                        desc.GetString() ?? GetDefaultVoiceDescription(settings.VoiceType) : 
-                        GetDefaultVoiceDescription(settings.VoiceType)
+                        desc.GetString() ?? GetOptimalVoiceDescription(settings.VoiceType, settings.ChildAge) : 
+                        GetOptimalVoiceDescription(settings.VoiceType, settings.ChildAge)
                 };
             }
         }
@@ -264,21 +326,50 @@ Respond in JSON format with optimal parameters for parler-tts-mini model:
 
         return new TtsParameters
         {
-            VoiceName = "en_speaker_6",
-            Speed = 1.0f,
-            Description = GetDefaultVoiceDescription(settings.VoiceType)
+            VoiceName = GetOptimalVoiceName(settings.VoiceType, settings.ChildAge),
+            Speed = GetOptimalSpeed(settings.ChildAge),
+            Description = GetOptimalVoiceDescription(settings.VoiceType, settings.ChildAge)
         };
     }
 
-    private string GetDefaultVoiceDescription(string voiceType)
+    private string GetOptimalVoiceName(string voiceType, int childAge)
     {
-        return voiceType.ToLower() switch
+        // parler-tts-mini works best with descriptive prompts rather than specific voice names
+        // We'll use a default voice name and rely on the description for voice characteristics
+        return "default";
+    }
+
+    private float GetOptimalSpeed(int childAge)
+    {
+        // Adjust speed based on child age for better comprehension
+        return childAge switch
         {
-            "warm" => "A warm, nurturing voice perfect for bedtime stories",
-            "calm" => "A calm, soothing voice that helps children relax",
-            "energetic" => "An upbeat, engaging voice for adventure stories",
-            "friendly" => "A friendly, approachable voice that children love",
-            _ => "A warm, friendly voice perfect for bedtime stories"
+            <= 4 => 0.8f,   // Slower for very young children
+            <= 7 => 0.9f,   // Slightly slower for early readers
+            <= 10 => 1.0f,  // Normal speed for school age
+            _ => 1.1f       // Slightly faster for older children
         };
+    }
+
+    private string GetOptimalVoiceDescription(string voiceType, int childAge)
+    {
+        var baseDescription = voiceType.ToLower() switch
+        {
+            "warm" => "A warm, nurturing voice",
+            "calm" => "A calm, soothing voice",
+            "energetic" => "An upbeat, engaging voice",
+            "friendly" => "A friendly, approachable voice",
+            _ => "A warm, friendly voice"
+        };
+
+        var ageAdjustment = childAge switch
+        {
+            <= 4 => " with a gentle, slow pace perfect for toddlers",
+            <= 7 => " with clear pronunciation ideal for young children",
+            <= 10 => " with engaging storytelling cadence for school-age children",
+            _ => " with expressive delivery for older children"
+        };
+
+        return $"{baseDescription}{ageAdjustment}, perfect for bedtime stories";
     }
 }
