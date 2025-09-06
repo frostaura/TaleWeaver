@@ -1,0 +1,13 @@
+twui-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+}
