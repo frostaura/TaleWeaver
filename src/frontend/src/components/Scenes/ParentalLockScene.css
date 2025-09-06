@@ -9,6 +9,16 @@
   overflow-y: auto;
 }
 
+/* Allow content to scroll on mobile */
+@media (max-width: 768px) {
+  .parental-lock-scene {
+    height: auto;
+    min-height: 100vh;
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
+}
+
 .scene-content {
   max-width: 600px;
   width: 100%;

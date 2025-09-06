@@ -66,6 +66,16 @@ body {
   animation: twinkle 3s ease-in-out infinite alternate;
 }
 
+/* Fix background on mobile to prevent it from scrolling */
+@media (max-width: 768px) {
+  body {
+    background-attachment: fixed !important;
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+}
+
 @keyframes twinkle {
   0% { opacity: 0.8; }
   50% { opacity: 1; }
