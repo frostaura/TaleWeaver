@@ -1,10 +1,129 @@
-<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> <meta name="description" content="TaleWeaver UI"> <meta name="mobile-web-app-capable" content="yes"> <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no"> <title>TaleWeaver UI</title> <link rel="stylesheet" href="/css/reset.css"> <link rel="stylesheet" href="/build/twui.css"> <script type="module" src="/build/twui.esm.js" data-stencil></script> <script nomodule="" src="/build/twui.js" data-stencil></script> </head> <body> <twui-app></twui-app> <script>
-if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  // auto-unregister service worker during dev mode
-  navigator.serviceWorker.getRegistration().then(function(registration) {
-    if (registration) {
-      registration.unregister().then(function() { location.reload(true) });
-    }
-  });
+<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> <meta name="description" content="TaleWeaver UI"> <meta name="mobile-web-app-capable" content="yes"> <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no"> <title>TaleWeaver UI</title> <style>/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
-</script></body></html>
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}</style> <style>@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"); :root{--font-size:1rem;--font-size-small:0.75rem;--font-size-header:1.75rem;--font-line-height:1.4;--font-weight:400;--font-weight-bold:700;--icon-size:1.5rem;--spacing:1rem;--header-height:4rem;--text-color:#fff;--text-color-dilute:#72729b;--background-app:linear-gradient(to bottom, #020111 10%, #3a3a52 100%)}</style> <link rel="modulepreload" href="/build/p-49db2ab3.js"><link rel="modulepreload" href="/build/p-BGpuMMRc.js"><link rel="modulepreload" href="/build/p-DLbMx3cv.js"><script type="module" src="/build/p-49db2ab3.js" data-stencil data-resources-url="/build/" data-stencil-namespace="twui"></script> <script nomodule="" src="/build/twui.js" data-stencil></script> </head> <body> <twui-app></twui-app> </body></html>

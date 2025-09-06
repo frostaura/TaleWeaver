@@ -57,6 +57,7 @@
     "@stencil/react-output-target": "^1.2.0",
     "@stencil/sass": "^3.2.2",
     "@stencil/store": "^2.2.0",
-    "iconify-icon": "^3.0.0"
+    "iconify-icon": "^3.0.0",
+    "ts-morph": "^26.0.0"
   }
 }
