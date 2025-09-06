@@ -6,45 +6,104 @@ import {
   Col, 
   Card, 
   Space, 
-  Progress, 
-  Spin 
+  Spin,
+  message,
+  Alert 
 } from 'antd';
 import { 
   PlayCircleOutlined, 
   PauseOutlined, 
-  RedoOutlined, 
   StarOutlined, 
   SaveOutlined,
-  LoadingOutlined 
+  LoadingOutlined,
+  SoundOutlined 
 } from '@ant-design/icons';
+import { apiService, getDefaultParentalSettings, type StoryResponse } from '../../services/api';
 import './QuickPlayScene.css';
 
 const { Title, Paragraph } = Typography;
 
 const QuickPlayScene: React.FC = () => {
   const [isGenerating, setIsGenerating] = useState(false);
-  const [storyGenerated, setStoryGenerated] = useState(false);
+  const [story, setStory] = useState<StoryResponse | null>(null);
+  const [selectedTheme, setSelectedTheme] = useState<string | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
 
-  const handleQuickPlay = () => {
+  const handleQuickPlay = async () => {
     setIsGenerating(true);
-    // Simulate story generation
-    setTimeout(() => {
+    try {
+      const parentalSettings = getDefaultParentalSettings();
+      const request = {
+        parentalSettings,
+        theme: selectedTheme || 'magical adventure',
+        characterName: 'Luna', // Default character name
+        setting: 'enchanted forest'
+      };
+
+      const response = await apiService.generateStory(request);
+      
+      if (!response.isSafe) {
+        message.warning('Story content needs adjustment. Please check your parental settings.');
+        return;
+      }
+
+      setStory(response);
+      message.success('Story generated successfully!');
+    } catch (error) {
+      console.error('Error generating story:', error);
+      message.error('Failed to generate story. Please try again.');
+    } finally {
       setIsGenerating(false);
-      setStoryGenerated(true);
-    }, 2000);
+    }
   };
 
   const handleNewStory = () => {
-    setStoryGenerated(false);
+    setStory(null);
+    setSelectedTheme(null);
+    if (currentAudio) {
+      currentAudio.pause();
+      setCurrentAudio(null);
+      setIsPlaying(false);
+    }
+  };
+
+  const handlePlayAudio = () => {
+    if (!story?.audioUrl) {
+      message.info('Audio is being generated. Please try again in a moment.');
+      return;
+    }
+
+    if (currentAudio) {
+      if (isPlaying) {
+        currentAudio.pause();
+        setIsPlaying(false);
+      } else {
+        currentAudio.play();
+        setIsPlaying(true);
+      }
+    } else {
+      const audio = new Audio(story.audioUrl);
+      audio.onended = () => setIsPlaying(false);
+      audio.onplay = () => setIsPlaying(true);
+      audio.onpause = () => setIsPlaying(false);
+      audio.play();
+      setCurrentAudio(audio);
+      setIsPlaying(true);
+    }
+  };
+
+  const handleThemeSelect = (theme: string) => {
+    setSelectedTheme(theme);
   };
 
   const themeOptions = [
-    { icon: '🦄', label: 'Magical Adventure' },
-    { icon: '🌙', label: 'Peaceful Dreams' },
-    { icon: '🚀', label: 'Space Explorer' },
-    { icon: '🐻', label: 'Forest Friends' },
-    { icon: '🏰', label: 'Fairy Tale' },
-    { icon: '🌊', label: 'Ocean Adventure' }
+    { icon: '🦄', label: 'Magical Adventure', value: 'magical adventure' },
+    { icon: '🌙', label: 'Peaceful Dreams', value: 'peaceful dreams' },
+    { icon: '🚀', label: 'Space Explorer', value: 'space adventure' },
+    { icon: '🐻', label: 'Forest Friends', value: 'forest animals' },
+    { icon: '🏰', label: 'Fairy Tale', value: 'fairy tale' },
+    { icon: '🌊', label: 'Ocean Adventure', value: 'ocean adventure' }
   ];
 
   return (
@@ -57,7 +116,7 @@ const QuickPlayScene: React.FC = () => {
           Instantly generate a magical bedtime story
         </Paragraph>
         
-        {!storyGenerated ? (
+        {!story ? (
           <Space direction="vertical" size="large" style={{ width: '100%' }}>
             <Card title="Choose a Quick Theme:" style={{ maxWidth: '800px', margin: '0 auto', marginBottom: '16px' }}>
               <Row gutter={[12, 12]}>
@@ -66,7 +125,13 @@ const QuickPlayScene: React.FC = () => {
                     <Button 
                       block 
                       size="large" 
-                      style={{ height: '60px', fontSize: '16px' }}
+                      type={selectedTheme === theme.value ? 'primary' : 'default'}
+                      onClick={() => handleThemeSelect(theme.value)}
+                      style={{ 
+                        height: '60px', 
+                        fontSize: '16px',
+                        borderColor: selectedTheme === theme.value ? '#646cff' : undefined
+                      }}
                     >
                       {theme.icon} {theme.label}
                     </Button>
@@ -100,39 +165,51 @@ const QuickPlayScene: React.FC = () => {
           </Space>
         ) : (
           <Space direction="vertical" size="large" style={{ width: '100%' }}>
+            {story.safetyWarnings && story.safetyWarnings.length > 0 && (
+              <Alert
+                message="Content Notice"
+                description={story.safetyWarnings.join(', ')}
+                type="warning"
+                showIcon
+                style={{ maxWidth: '800px', margin: '0 auto' }}
+              />
+            )}
+            
             <Card 
-              title={<><StarOutlined /> Your Story: "Luna's Moonlight Journey"</>}
+              title={<><StarOutlined /> Your Personalized Story</>}
               style={{ maxWidth: '800px', margin: '0 auto' }}
             >
               <Paragraph style={{ fontSize: '16px', lineHeight: '1.6', marginBottom: '24px' }}>
-                Once upon a time, in a cozy little house at the edge of a magical forest, 
-                lived a curious little girl named Luna. Every night, she would look out her 
-                window at the twinkling stars and wonder what adventures awaited among them...
+                {story.storyText}
               </Paragraph>
               
               <Row gutter={16} style={{ marginBottom: '16px' }}>
                 <Col>
-                  <Button type="primary" icon={<PlayCircleOutlined />}>
-                    Play Story
+                  <Button 
+                    type="primary" 
+                    icon={isPlaying ? <PauseOutlined /> : <PlayCircleOutlined />}
+                    onClick={handlePlayAudio}
+                    disabled={!story.audioUrl}
+                  >
+                    {isPlaying ? 'Pause' : 'Play Story'}
                   </Button>
                 </Col>
-                <Col>
-                  <Button icon={<PauseOutlined />}>
-                    Pause
-                  </Button>
-                </Col>
-                <Col>
-                  <Button icon={<RedoOutlined />}>
-                    Restart
-                  </Button>
-                </Col>
+                {story.audioUrl && (
+                  <Col>
+                    <Button icon={<SoundOutlined />} disabled>
+                      Voice: {story.ttsParameters.description}
+                    </Button>
+                  </Col>
+                )}
               </Row>
               
-              <div style={{ marginBottom: '16px' }}>
-                <Progress percent={0} showInfo={false} />
-                <div style={{ textAlign: 'center', marginTop: '8px', color: 'rgba(255, 255, 255, 0.65)' }}>
-                  0:00 / 4:32
-                </div>
+              <div style={{ marginBottom: '16px', color: 'rgba(255, 255, 255, 0.65)' }}>
+                <div>Estimated Duration: {story.estimatedDuration}</div>
+                {story.audioUrl && (
+                  <div style={{ marginTop: '8px' }}>
+                    🎵 Audio ready to play
+                  </div>
+                )}
               </div>
             </Card>
             
@@ -151,6 +228,7 @@ const QuickPlayScene: React.FC = () => {
                 <Button 
                   size="large" 
                   icon={<SaveOutlined />}
+                  onClick={() => message.info('Save feature coming soon!')}
                 >
                   Save Story
                 </Button>
