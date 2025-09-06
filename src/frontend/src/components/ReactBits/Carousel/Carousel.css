@@ -21,6 +21,15 @@
   z-index: 1;
 }
 
+/* Allow content to scroll on mobile */
+@media (max-width: 768px) {
+  .reactbits-carousel.fullpage {
+    position: absolute;
+    min-height: 100vh;
+    height: auto;
+  }
+}
+
 .carousel-background {
   position: relative;
   background: linear-gradient(135deg, 
@@ -47,6 +56,16 @@
   /* Remove the gradient overlay for full-page mode to show night sky */
   background: transparent;
   animation: none;
+  min-height: 100vh;
+}
+
+/* Ensure content can scroll on mobile while background stays fixed */
+@media (max-width: 768px) {
+  .reactbits-carousel.fullpage .carousel-background {
+    position: relative;
+    min-height: 100vh;
+    height: auto;
+  }
 }
 
 @keyframes gradientShift {
@@ -89,6 +108,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Allow content to expand and scroll on mobile */
+@media (max-width: 768px) {
+  .reactbits-carousel.fullpage .carousel-content {
+    min-height: 100vh;
+    height: auto;
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
 }
 
 .carousel-scene {
