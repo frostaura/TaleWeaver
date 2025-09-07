@@ -41,7 +41,13 @@ export namespace Components {
         "label"?: string;
     }
     interface TwuiGriditem {
+        /**
+          * optional icon
+         */
         "icon"?: string;
+        /**
+          * optional label
+         */
         "label"?: string;
     }
     interface TwuiHeader {
@@ -239,7 +245,13 @@ declare namespace LocalJSX {
         "label"?: string;
     }
     interface TwuiGriditem {
+        /**
+          * optional icon
+         */
         "icon"?: string;
+        /**
+          * optional label
+         */
         "label"?: string;
     }
     interface TwuiHeader {

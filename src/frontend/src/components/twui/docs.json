@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-07T19:42:38",
+  "timestamp": "2025-09-07T20:22:16",
   "compiler": {
     "name": "@stencil/core",
     "version": "4.36.3",
@@ -556,7 +556,7 @@
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "optional icon",
           "docsTags": [],
           "values": [
             {
@@ -579,7 +579,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "optional label",
           "docsTags": [],
           "values": [
             {

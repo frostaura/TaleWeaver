@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `icon`   | `icon`    |             | `string` | `undefined` |
-| `label`  | `label`   |             | `string` | `undefined` |
+| Property | Attribute | Description    | Type     | Default     |
+| -------- | --------- | -------------- | -------- | ----------- |
+| `icon`   | `icon`    | optional icon  | `string` | `undefined` |
+| `label`  | `label`   | optional label | `string` | `undefined` |
 
 
 ## Dependencies
