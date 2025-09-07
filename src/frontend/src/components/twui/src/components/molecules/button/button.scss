@@ -16,11 +16,5 @@ twui-button {
     color: var(--text-color);
     font-weight: var(--font-weight-bold);
     box-shadow: var(--button-shadow);
-
-    &[color='secondary'] {
-    }
-
-    &[color='link'] {
-    }
   }
 }
