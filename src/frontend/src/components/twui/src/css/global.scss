@@ -19,11 +19,13 @@
   --status-warning-color: #bd690d;
   --status-error-color: #a30628;
 
+  --shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
   --button-background-color: hsl(268, 51%, 40%);
 
   --button-background: linear-gradient(to bottom, hsl(from var(--button-background-color) h s calc(l + 2)) 10%, hsl(from var(--button-background-color) h s calc(l - 2)) 100%);
   --button-border: 1px solid hsl(from var(--button-background-color) h s calc(l - 15));
-  --button-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), inset 0 2px 4px hsl(from var(--button-background-color) h s calc(l + 15));
+  --button-shadow: var(--shadow), inset 0 2px 4px hsl(from var(--button-background-color) h s calc(l + 15));
 
   --text-color: #fff;
   --text-color-dilute: #b9aad2;

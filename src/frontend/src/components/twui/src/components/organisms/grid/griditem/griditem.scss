@@ -18,5 +18,10 @@ twui-griditem {
   &.toggled {
     background: var(--button-background);
     box-shadow: var(--button-shadow);
+    border: var(--button-border);
+
+    .griditemicon {
+      filter: drop-shadow(var(--shadow));
+    }
   }
 }
