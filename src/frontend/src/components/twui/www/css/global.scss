@@ -30,4 +30,9 @@
   --text-color: #fff;
   --text-color-dilute: #b9aad2;
   --background-app: linear-gradient(to bottom, #151236 10%, #3a3a52 100%);
+
+  --transition-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1);
+
+  --transition-timing: 0.3s var(--transition-timing-function);
+  --transition-timing-slow: 0.7s var(--transition-timing-function);
 }
