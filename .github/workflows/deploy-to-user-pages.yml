@@ -1,0 +1,48 @@
+name: Deploy to User GitHub Pages
+
+'on':
+  push:
+    branches: ["main", "master"]
+    paths:
+      - 'src/frontend/src/components/twui/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: >-
+            src/frontend/src/components/twui/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd src/frontend/src/components/twui
+          PUPPETEER_SKIP_DOWNLOAD=true npm ci
+
+      - name: Build StencilJS project
+        run: |
+          cd src/frontend/src/components/twui
+          npm run build
+
+      - name: Deploy to User GitHub Pages Repository
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          external_repository: frostaura/frostaura.github.io
+          publish_dir: ./src/frontend/src/components/twui/www
+          publish_branch: main
+          enable_jekyll: false
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
