@@ -1,0 +1,47 @@
+name: Deploy StencilJS UI Kit
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/frontend/src/components/twui/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/frontend/src/components/twui/**'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: 'src/frontend/src/components/twui/package-lock.json'
+        
+    - name: Install dependencies
+      run: |
+        cd src/frontend/src/components/twui
+        npm ci
+      env:
+        PUPPETEER_SKIP_DOWNLOAD: true
+        
+    - name: Build StencilJS project
+      run: |
+        cd src/frontend/src/components/twui
+        npm run build
+        
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./src/frontend/src/components/twui/www
+        destination_dir: twui
