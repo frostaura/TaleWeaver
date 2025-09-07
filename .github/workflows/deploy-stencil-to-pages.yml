@@ -1,0 +1,62 @@
+---
+name: Deploy StencilJS to GitHub Pages
+
+'on':
+  push:
+    branches: ["main", "master"]
+    paths:
+      - 'src/frontend/src/components/twui/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: >-
+            src/frontend/src/components/twui/package-lock.json
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Install dependencies
+        run: |
+          cd src/frontend/src/components/twui
+          PUPPETEER_SKIP_DOWNLOAD=true npm ci
+
+      - name: Build StencilJS project
+        run: |
+          cd src/frontend/src/components/twui
+          npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'src/frontend/src/components/twui/www'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
