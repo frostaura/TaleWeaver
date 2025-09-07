@@ -38,7 +38,8 @@
     "loader/"
   ],
   "scripts": {
-    "build": "stencil build",
+    "build": "stencil build && node fix-paths.js",
+    "build:prod": "stencil build && node fix-paths.js",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
