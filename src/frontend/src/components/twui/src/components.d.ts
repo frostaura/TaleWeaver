@@ -6,6 +6,14 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface TwuiAccordion {
+        "icon"?: string;
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "open": boolean;
+    }
     interface TwuiApp {
     }
     interface TwuiButton {
@@ -19,10 +27,22 @@ export namespace Components {
         "type"?: string;
     }
     interface TwuiCard {
+        /**
+          * @default true
+         */
+        "filled"?: boolean;
         "icon"?: string;
         "label"?: string;
     }
-    interface TwuiCustomstory {
+    interface TwuiCreatestory {
+    }
+    interface TwuiGrid {
+        "icon"?: string;
+        "label"?: string;
+    }
+    interface TwuiGriditem {
+        "icon"?: string;
+        "label"?: string;
     }
     interface TwuiHeader {
     }
@@ -44,8 +64,6 @@ export namespace Components {
     }
     interface TwuiProfile {
     }
-    interface TwuiQuickstory {
-    }
     interface TwuiSettings {
     }
     interface TwuiText {
@@ -56,6 +74,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLTwuiAccordionElement extends Components.TwuiAccordion, HTMLStencilElement {
+    }
+    var HTMLTwuiAccordionElement: {
+        prototype: HTMLTwuiAccordionElement;
+        new (): HTMLTwuiAccordionElement;
+    };
     interface HTMLTwuiAppElement extends Components.TwuiApp, HTMLStencilElement {
     }
     var HTMLTwuiAppElement: {
@@ -74,11 +98,23 @@ declare global {
         prototype: HTMLTwuiCardElement;
         new (): HTMLTwuiCardElement;
     };
-    interface HTMLTwuiCustomstoryElement extends Components.TwuiCustomstory, HTMLStencilElement {
+    interface HTMLTwuiCreatestoryElement extends Components.TwuiCreatestory, HTMLStencilElement {
     }
-    var HTMLTwuiCustomstoryElement: {
-        prototype: HTMLTwuiCustomstoryElement;
-        new (): HTMLTwuiCustomstoryElement;
+    var HTMLTwuiCreatestoryElement: {
+        prototype: HTMLTwuiCreatestoryElement;
+        new (): HTMLTwuiCreatestoryElement;
+    };
+    interface HTMLTwuiGridElement extends Components.TwuiGrid, HTMLStencilElement {
+    }
+    var HTMLTwuiGridElement: {
+        prototype: HTMLTwuiGridElement;
+        new (): HTMLTwuiGridElement;
+    };
+    interface HTMLTwuiGriditemElement extends Components.TwuiGriditem, HTMLStencilElement {
+    }
+    var HTMLTwuiGriditemElement: {
+        prototype: HTMLTwuiGriditemElement;
+        new (): HTMLTwuiGriditemElement;
     };
     interface HTMLTwuiHeaderElement extends Components.TwuiHeader, HTMLStencilElement {
     }
@@ -128,12 +164,6 @@ declare global {
         prototype: HTMLTwuiProfileElement;
         new (): HTMLTwuiProfileElement;
     };
-    interface HTMLTwuiQuickstoryElement extends Components.TwuiQuickstory, HTMLStencilElement {
-    }
-    var HTMLTwuiQuickstoryElement: {
-        prototype: HTMLTwuiQuickstoryElement;
-        new (): HTMLTwuiQuickstoryElement;
-    };
     interface HTMLTwuiSettingsElement extends Components.TwuiSettings, HTMLStencilElement {
     }
     var HTMLTwuiSettingsElement: {
@@ -153,10 +183,13 @@ declare global {
         new (): HTMLTwuiUpgradeElement;
     };
     interface HTMLElementTagNameMap {
+        "twui-accordion": HTMLTwuiAccordionElement;
         "twui-app": HTMLTwuiAppElement;
         "twui-button": HTMLTwuiButtonElement;
         "twui-card": HTMLTwuiCardElement;
-        "twui-customstory": HTMLTwuiCustomstoryElement;
+        "twui-createstory": HTMLTwuiCreatestoryElement;
+        "twui-grid": HTMLTwuiGridElement;
+        "twui-griditem": HTMLTwuiGriditemElement;
         "twui-header": HTMLTwuiHeaderElement;
         "twui-infobox": HTMLTwuiInfoboxElement;
         "twui-nav": HTMLTwuiNavElement;
@@ -165,13 +198,20 @@ declare global {
         "twui-parentallock": HTMLTwuiParentallockElement;
         "twui-privacy": HTMLTwuiPrivacyElement;
         "twui-profile": HTMLTwuiProfileElement;
-        "twui-quickstory": HTMLTwuiQuickstoryElement;
         "twui-settings": HTMLTwuiSettingsElement;
         "twui-text": HTMLTwuiTextElement;
         "twui-upgrade": HTMLTwuiUpgradeElement;
     }
 }
 declare namespace LocalJSX {
+    interface TwuiAccordion {
+        "icon"?: string;
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "open"?: boolean;
+    }
     interface TwuiApp {
     }
     interface TwuiButton {
@@ -185,10 +225,22 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface TwuiCard {
+        /**
+          * @default true
+         */
+        "filled"?: boolean;
         "icon"?: string;
         "label"?: string;
     }
-    interface TwuiCustomstory {
+    interface TwuiCreatestory {
+    }
+    interface TwuiGrid {
+        "icon"?: string;
+        "label"?: string;
+    }
+    interface TwuiGriditem {
+        "icon"?: string;
+        "label"?: string;
     }
     interface TwuiHeader {
     }
@@ -210,8 +262,6 @@ declare namespace LocalJSX {
     }
     interface TwuiProfile {
     }
-    interface TwuiQuickstory {
-    }
     interface TwuiSettings {
     }
     interface TwuiText {
@@ -221,10 +271,13 @@ declare namespace LocalJSX {
     interface TwuiUpgrade {
     }
     interface IntrinsicElements {
+        "twui-accordion": TwuiAccordion;
         "twui-app": TwuiApp;
         "twui-button": TwuiButton;
         "twui-card": TwuiCard;
-        "twui-customstory": TwuiCustomstory;
+        "twui-createstory": TwuiCreatestory;
+        "twui-grid": TwuiGrid;
+        "twui-griditem": TwuiGriditem;
         "twui-header": TwuiHeader;
         "twui-infobox": TwuiInfobox;
         "twui-nav": TwuiNav;
@@ -233,7 +286,6 @@ declare namespace LocalJSX {
         "twui-parentallock": TwuiParentallock;
         "twui-privacy": TwuiPrivacy;
         "twui-profile": TwuiProfile;
-        "twui-quickstory": TwuiQuickstory;
         "twui-settings": TwuiSettings;
         "twui-text": TwuiText;
         "twui-upgrade": TwuiUpgrade;
@@ -243,10 +295,13 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "twui-accordion": LocalJSX.TwuiAccordion & JSXBase.HTMLAttributes<HTMLTwuiAccordionElement>;
             "twui-app": LocalJSX.TwuiApp & JSXBase.HTMLAttributes<HTMLTwuiAppElement>;
             "twui-button": LocalJSX.TwuiButton & JSXBase.HTMLAttributes<HTMLTwuiButtonElement>;
             "twui-card": LocalJSX.TwuiCard & JSXBase.HTMLAttributes<HTMLTwuiCardElement>;
-            "twui-customstory": LocalJSX.TwuiCustomstory & JSXBase.HTMLAttributes<HTMLTwuiCustomstoryElement>;
+            "twui-createstory": LocalJSX.TwuiCreatestory & JSXBase.HTMLAttributes<HTMLTwuiCreatestoryElement>;
+            "twui-grid": LocalJSX.TwuiGrid & JSXBase.HTMLAttributes<HTMLTwuiGridElement>;
+            "twui-griditem": LocalJSX.TwuiGriditem & JSXBase.HTMLAttributes<HTMLTwuiGriditemElement>;
             "twui-header": LocalJSX.TwuiHeader & JSXBase.HTMLAttributes<HTMLTwuiHeaderElement>;
             "twui-infobox": LocalJSX.TwuiInfobox & JSXBase.HTMLAttributes<HTMLTwuiInfoboxElement>;
             "twui-nav": LocalJSX.TwuiNav & JSXBase.HTMLAttributes<HTMLTwuiNavElement>;
@@ -255,7 +310,6 @@ declare module "@stencil/core" {
             "twui-parentallock": LocalJSX.TwuiParentallock & JSXBase.HTMLAttributes<HTMLTwuiParentallockElement>;
             "twui-privacy": LocalJSX.TwuiPrivacy & JSXBase.HTMLAttributes<HTMLTwuiPrivacyElement>;
             "twui-profile": LocalJSX.TwuiProfile & JSXBase.HTMLAttributes<HTMLTwuiProfileElement>;
-            "twui-quickstory": LocalJSX.TwuiQuickstory & JSXBase.HTMLAttributes<HTMLTwuiQuickstoryElement>;
             "twui-settings": LocalJSX.TwuiSettings & JSXBase.HTMLAttributes<HTMLTwuiSettingsElement>;
             "twui-text": LocalJSX.TwuiText & JSXBase.HTMLAttributes<HTMLTwuiTextElement>;
             "twui-upgrade": LocalJSX.TwuiUpgrade & JSXBase.HTMLAttributes<HTMLTwuiUpgradeElement>;

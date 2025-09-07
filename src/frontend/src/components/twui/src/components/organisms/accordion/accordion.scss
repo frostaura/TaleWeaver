@@ -1,0 +1,22 @@
+twui-accordion {
+  display: block;
+
+  summary {
+    padding: var(--spacing-half);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  summary::marker,
+  summary::-webkit-details-marker {
+    content: '';
+  }
+
+  .accordioncontent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-half);
+    padding: var(--spacing-half);
+  }
+}

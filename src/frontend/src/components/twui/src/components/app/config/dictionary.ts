@@ -1,9 +1,5 @@
 export interface Strings {
   pages: {
-    customstory?: {
-      title?: string;
-      subtitle?: string;
-    };
     onboarding?: {
       title?: string;
       subtitle?: string;
@@ -20,7 +16,7 @@ export interface Strings {
       title?: string;
       subtitle?: string;
     };
-    quickstory?: {
+    createstory?: {
       title?: string;
       subtitle?: string;
     };
@@ -48,10 +44,6 @@ export const dictionaries: Dictionaries = {
   en: {
     strings: {
       pages: {
-        customstory: {
-          title: 'Custom Story',
-          subtitle: 'Create your own adventure',
-        },
         onboarding: {
           title: 'Welcome to TaleWeaver',
           subtitle: 'Your magical bedtime story maker.',
@@ -68,9 +60,9 @@ export const dictionaries: Dictionaries = {
           title: 'Profile',
           subtitle: 'Update your personal details',
         },
-        quickstory: {
-          title: 'Quick Story',
-          subtitle: 'Jump into a fast experience',
+        createstory: {
+          title: 'Create a Story',
+          subtitle: 'Instantly generate a magical story',
         },
         settings: {
           title: 'Settings',

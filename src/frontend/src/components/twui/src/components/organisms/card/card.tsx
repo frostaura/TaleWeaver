@@ -8,6 +8,7 @@ import { Component, Host, Prop, h } from '@stencil/core';
 export class TWUICard {
   @Prop() label?: string;
   @Prop() icon?: string;
+  @Prop() filled?: boolean = true;
   render() {
     return (
       <Host>
@@ -17,7 +18,12 @@ export class TWUICard {
         </header>
 
         <slot name="beforecontent"></slot>
-        <section class="container">
+        <section
+          class={{
+            container: true,
+            filled: this.filled,
+          }}
+        >
           <slot></slot>
         </section>
         <slot name="aftercontent"></slot>

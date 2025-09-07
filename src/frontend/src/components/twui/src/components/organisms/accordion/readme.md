@@ -9,9 +9,9 @@
 
 | Property | Attribute | Description | Type      | Default     |
 | -------- | --------- | ----------- | --------- | ----------- |
-| `filled` | `filled`  |             | `boolean` | `true`      |
 | `icon`   | `icon`    |             | `string`  | `undefined` |
 | `label`  | `label`   |             | `string`  | `undefined` |
+| `open`   | `open`    |             | `boolean` | `false`     |
 
 
 ## Dependencies
@@ -19,8 +19,6 @@
 ### Used by
 
  - [twui-createstory](../../pages/createstory)
- - [twui-parentallock](../../pages/parentallock)
- - [twui-privacy](../../pages/privacy)
 
 ### Depends on
 
@@ -29,11 +27,9 @@
 ### Graph
 ```mermaid
 graph TD;
-  twui-card --> twui-text
-  twui-createstory --> twui-card
-  twui-parentallock --> twui-card
-  twui-privacy --> twui-card
-  style twui-card fill:#f9f,stroke:#333,stroke-width:4px
+  twui-accordion --> twui-text
+  twui-createstory --> twui-accordion
+  style twui-accordion fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

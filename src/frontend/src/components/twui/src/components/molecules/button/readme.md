@@ -20,6 +20,7 @@
 
 ### Used by
 
+ - [twui-createstory](../../pages/createstory)
  - [twui-onboarding](../../pages/onboarding)
  - [twui-parentallock](../../pages/parentallock)
  - [twui-privacy](../../pages/privacy)
@@ -27,6 +28,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  twui-createstory --> twui-button
   twui-onboarding --> twui-button
   twui-parentallock --> twui-button
   twui-privacy --> twui-button
