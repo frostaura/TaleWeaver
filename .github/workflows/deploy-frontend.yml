@@ -40,13 +40,6 @@ jobs:
         run: |
           cd src/frontend/src/components/twui
           npm run build
-          
-      - name: Fix GitHub Pages paths
-        run: |
-          cd src/frontend/src/components/twui/www
-          sed -i 's|href="/|href="/TaleWeaver/|g' index.html
-          sed -i 's|src="/|src="/TaleWeaver/|g' index.html
-          sed -i 's|data-resources-url="/|data-resources-url="/TaleWeaver/|g' index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
