@@ -29,17 +29,25 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: src/frontend/package.json
+          cache-dependency-path: src/frontend/src/components/twui/package.json
 
       - name: Install dependencies
         run: |
-          cd src/frontend
-          npm install
+          cd src/frontend/src/components/twui
+          rm -rf package-lock.json node_modules
+          PUPPETEER_SKIP_DOWNLOAD=true npm install
 
       - name: Build frontend
         run: |
-          cd src/frontend
+          cd src/frontend/src/components/twui
           npm run build
+          
+      - name: Fix GitHub Pages paths
+        run: |
+          cd src/frontend/src/components/twui/www
+          sed -i 's|href="/|href="/TaleWeaver/|g' index.html
+          sed -i 's|src="/|src="/TaleWeaver/|g' index.html
+          sed -i 's|data-resources-url="/|data-resources-url="/TaleWeaver/|g' index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -47,7 +55,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: src/frontend/dist
+          path: src/frontend/src/components/twui/www
 
   deploy:
     environment:
